@@ -1,0 +1,15 @@
+/* src/pages/ContractorDashboard.css */
+.contractor-dashboard {
+    padding: 20px;
+    background-color: #f9f9e6; /* Light cream background */
+    min-height: 100vh; /* Make sure the background covers the full viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center the content vertically */
+  }
+  
+  .contractor-form {
+    max-width: 400px; /* Limit form width */
+    margin: 0 auto; /* Center the form */
+  }
+  
