@@ -1,0 +1,15 @@
+.footer {
+    background-color: #4caf50; /* Green background */
+    color: white; /* Text color */
+    text-align: center; /* Centered text */
+    padding: 10px 0; /* Vertical padding */
+    position: relative; /* Change to relative to allow normal flow */
+    width: 100%; /* Full width */
+    bottom: 0; /* Align to the bottom */
+  }
+  
+  .footer p {
+    margin: 0;
+    font-size: 14px;
+  }
+  

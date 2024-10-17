@@ -1,0 +1,32 @@
+.login-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh; /* Full height */
+    background-color: #f9f9e6; /* Light cream background */
+  }
+  
+  .animation-container {
+    flex: 1; /* Allow this to grow */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .content-container {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .button-group {
+    margin-top: 20px;
+  }
+  
+  .footer {
+    background-color: #4caf50; /* Green background */
+    color: white; /* Text color */
+    text-align: center; /* Centered text */
+    padding: 10px 0; /* Vertical padding */
+    width: 100%; /* Full width */
+  }
+  
