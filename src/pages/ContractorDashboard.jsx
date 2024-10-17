@@ -1,34 +1,32 @@
-// src/pages/ContractorDashboard.jsx
-import React, { useState } from "react";
-import { Form, Input, Button } from "antd";
-import "../styling/ContractorDashboard.css"; // Make sure to create this CSS file
+import React from "react";
+import { Form, Input, Button, Typography } from "antd";
+import "../styling/ContractorDashboard.css"; // Optional: Add custom CSS
 
-const ContractorDashboard = () => {
-  const [form] = Form.useForm();
-  const [contractorId, setContractorId] = useState("");
+const { Title } = Typography;
 
-  const handleFinish = (values) => {
-    console.log("Received values:", values);
-    // Here, you can handle form submission, e.g., sending data to an API
+const ClientDashboard = () => {
+  const onFinish = (values) => {
+    console.log("Form values:", values);
+    alert("Form submitted successfully!");
   };
 
   return (
-    <div className="contractor-dashboard">
-      <h1>Contractor Dashboard</h1>
+    <div className="dashboard-container">
+      <Title level={2} className="dashboard-title">
+        Contractor Dashboard
+      </Title>
       <p>Here you'll manage your clients and upload project updates.</p>
 
       <Form
-        form={form}
+        name="clientForm"
+        onFinish={onFinish}
         layout="vertical"
-        onFinish={handleFinish}
-        className="contractor-form"
+        style={{ maxWidth: 400, margin: "20px auto" }}
       >
         <Form.Item
-          label="Contractor Name"
+          label="ContractorName"
           name="contractorName"
-          rules={[
-            { required: true, message: "Please input your contractor name!" },
-          ]}
+          rules={[{ required: true, message: "Please enter your name!" }]}
         >
           <Input placeholder="Enter Contractor Name" />
         </Form.Item>
@@ -37,18 +35,14 @@ const ContractorDashboard = () => {
           label="Contractor ID"
           name="contractorId"
           rules={[
-            { required: true, message: "Please input your contractor ID!" },
+            { required: true, message: "Please enter your ID!" },
           ]}
         >
-          <Input
-            placeholder="Enter Contractor ID"
-            value={contractorId}
-            onChange={(e) => setContractorId(e.target.value)}
-          />
+          <Input placeholder="Enter your ID " />
         </Form.Item>
 
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" block>
             Submit
           </Button>
         </Form.Item>
@@ -57,4 +51,4 @@ const ContractorDashboard = () => {
   );
 };
 
-export default ContractorDashboard;
+export default ClientDashboard;
