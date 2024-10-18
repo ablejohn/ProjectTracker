@@ -1,43 +1,48 @@
 /* src/styling/AdminDashboard.css */
 
 .admin-dashboard {
-    min-height: 100vh;
-    padding: 40px;
+    min-height: 100vh; /* Keeps the minimum height of the dashboard */
+    padding: 2px; /* Original padding */
     background: linear-gradient(to bottom right, #f0f2f5, #dfe6e9);
     text-align: center;
-  }
-  
-  .dashboard-header {
+    display: flex; /* Added for layout adjustments */
+    flex-direction: column; /* Allows for vertical layout */
+    justify-content: space-between; /* Ensures footer stays at the bottom */
+}
+
+.dashboard-header {
     color: #4caf50;
-    margin-bottom: 32px;
+    margin-bottom: 22px;
     font-size: 36px;
     font-weight: bold;
-  }
-  
-  .section-row {
+}
+
+.section-row {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-  }
-  
-  .section-container {
+}
+
+.section-container {
     text-align: center;
     margin-top: 20px;
-  }
-  
-  .lottie-animation {
+}
+
+.lottie-animation {
     max-width: 300px;
     margin: 0 auto 20px;
-  }
-  
-  .dashboard-button {
+}
+
+.dashboard-button {
     background-color: #4caf50;
     border: none;
     width: 80%;
-  }
-  
-  .dashboard-button:hover {
+}
+
+.dashboard-button:hover {
     background-color: #45a049;
-  }
-  
+}
+.footer{
+    margin-bottom: 10px;
+}

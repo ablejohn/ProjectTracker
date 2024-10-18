@@ -1,22 +1,21 @@
-// src/pages/AdminDashboard.jsx
 import React from "react";
 import { Button, Typography, Row, Col } from "antd";
 import Lottie from "lottie-react";
 import clientAnimation from "../assets/client.json"; // Add your animation JSON files
 import contractorAnimation from "../assets/contractor.json"; // Add your animation JSON files
 import "../styling/AdminDashboard.css"; // Custom CSS for styling
-
+import Footer from "../components/Footer"; // Ensure the correct casing
 const { Title } = Typography;
 
 const AdminDashboard = () => {
   const handleCreateClient = () => {
     alert("Redirecting to Create Client Profile...");
-    // Implement navigation logic here, e.g., useNavigate("/add-client")
+    // Implement navigation logic here
   };
 
   const handleCreateContractor = () => {
     alert("Redirecting to Create Contractor Profile...");
-    // Implement navigation logic here, e.g., useNavigate("/add-contractor")
+    // Implement navigation logic here
   };
 
   return (
@@ -24,7 +23,6 @@ const AdminDashboard = () => {
       <Title level={1} className="dashboard-header">
         Welcome to the Admin Dashboard
       </Title>
-
       <Row gutter={32} className="section-row">
         {/* Client Section */}
         <Col xs={24} md={12} className="section-container">
@@ -60,6 +58,8 @@ const AdminDashboard = () => {
           </Button>
         </Col>
       </Row>
+      <Footer className="footer" />{" "}
+      {/* Include Footer inside the return statement */}
     </div>
   );
 };

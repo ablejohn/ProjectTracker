@@ -13,7 +13,7 @@ const ClientDashboard = () => {
   return (
     <div className="dashboard-container">
       <Title level={2} className="dashboard-title">
-        Contractor Dashboard
+        Contractor Login
       </Title>
       <p>Here you'll manage your clients and upload project updates.</p>
 
