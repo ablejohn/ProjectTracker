@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Input, Button, Typography } from "antd";
-import "../styling/ContractorDashboard.css"; // Optional: Add custom CSS
+import "../styling/AllLogin.css"; // Optional: Add custom CSS
 
 const { Title } = Typography;
 
@@ -34,9 +34,7 @@ const ClientDashboard = () => {
         <Form.Item
           label="Contractor ID"
           name="contractorId"
-          rules={[
-            { required: true, message: "Please enter your ID!" },
-          ]}
+          rules={[{ required: true, message: "Please enter your ID!" }]}
         >
           <Input placeholder="Enter your ID " />
         </Form.Item>

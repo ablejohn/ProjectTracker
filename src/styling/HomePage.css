@@ -17,6 +17,11 @@
     text-align: center;
     padding: 20px;
   }
+  .content-container h1{
+    color:black;
+   font-weight: bolder;
+    
+  }
   
   .button-group {
     margin-top: 20px;

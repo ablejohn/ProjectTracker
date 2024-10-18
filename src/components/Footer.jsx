@@ -1,10 +1,12 @@
 import React from "react";
-import "../styling/Footer.css"; // Create this CSS file for styling
+import "../styling/Footer.css";
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <p>&copy; {new Date().getFullYear()} Your Name. All rights reserved.</p>
+      <p>
+        &copy; {new Date().getFullYear()} John Ayomide ABE. All rights reserved.
+      </p>
     </footer>
   );
 };

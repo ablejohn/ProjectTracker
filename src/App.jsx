@@ -1,9 +1,11 @@
 // src/App.jsx
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import ClientDashboard from "./pages/ClientDashboard";
-import ContractorDashboard from "./pages/ContractorDashboard";
-import Login from "./pages/Login";
+import ClientDashboard from "./pages/ClientLogin";
+import ContractorDashboard from "./pages/ContractorLogin";
+import AdminDashboardLogin from "./pages/AdminDashboardLogin"; // Ensure the correct import
+import AdminDashboard from "./pages/AdminDashboard"; // Add this line for Admin Dashboard
+import Login from "./pages/HomePage";
 import "./App.css";
 
 function App() {
@@ -17,6 +19,13 @@ function App() {
             path="/contractor-dashboard"
             element={<ContractorDashboard />}
           />
+          <Route
+            path="/admin-dashboard-login"
+            element={<AdminDashboardLogin />}
+          />{" "}
+          {/* Admin login route */}
+          <Route path="/admin-dashboard" element={<AdminDashboard />} />{" "}
+          {/* Admin Dashboard route */}
         </Routes>
       </div>
     </Router>

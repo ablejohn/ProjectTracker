@@ -1,0 +1,67 @@
+// src/pages/AdminDashboard.jsx
+import React from "react";
+import { Button, Typography, Row, Col } from "antd";
+import Lottie from "lottie-react";
+import clientAnimation from "../assets/client.json"; // Add your animation JSON files
+import contractorAnimation from "../assets/contractor.json"; // Add your animation JSON files
+import "../styling/AdminDashboard.css"; // Custom CSS for styling
+
+const { Title } = Typography;
+
+const AdminDashboard = () => {
+  const handleCreateClient = () => {
+    alert("Redirecting to Create Client Profile...");
+    // Implement navigation logic here, e.g., useNavigate("/add-client")
+  };
+
+  const handleCreateContractor = () => {
+    alert("Redirecting to Create Contractor Profile...");
+    // Implement navigation logic here, e.g., useNavigate("/add-contractor")
+  };
+
+  return (
+    <div className="admin-dashboard">
+      <Title level={1} className="dashboard-header">
+        Welcome to the Admin Dashboard
+      </Title>
+
+      <Row gutter={32} className="section-row">
+        {/* Client Section */}
+        <Col xs={24} md={12} className="section-container">
+          <Lottie
+            animationData={clientAnimation}
+            loop={true}
+            className="lottie-animation"
+          />
+          <Button
+            type="primary"
+            size="large"
+            onClick={handleCreateClient}
+            className="dashboard-button"
+          >
+            Create Client Profile
+          </Button>
+        </Col>
+
+        {/* Contractor Section */}
+        <Col xs={24} md={12} className="section-container">
+          <Lottie
+            animationData={contractorAnimation}
+            loop={true}
+            className="lottie-animation"
+          />
+          <Button
+            type="primary"
+            size="large"
+            onClick={handleCreateContractor}
+            className="dashboard-button"
+          >
+            Create Contractor Profile
+          </Button>
+        </Col>
+      </Row>
+    </div>
+  );
+};
+
+export default AdminDashboard;
