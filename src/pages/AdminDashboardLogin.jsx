@@ -1,8 +1,8 @@
-// src/pages/AdminDashboardLogin.jsx
 import React from "react";
 import { Form, Input, Button, Typography } from "antd";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import "../styling/AdminDashboard.css"; // Optional: Add custom CSS
+import BackButton from "../components/backbutton";
 
 const { Title } = Typography;
 
@@ -21,7 +21,6 @@ const AdminDashboardLogin = () => {
         Admin Dashboard Login
       </Title>
       <p>Please enter your credentials to access the Admin Dashboard.</p>
-
       <Form
         name="adminLoginForm"
         onFinish={onFinish}
@@ -52,6 +51,8 @@ const AdminDashboardLogin = () => {
           </Button>
         </Form.Item>
       </Form>
+      
+      <BackButton />
     </div>
   );
 };

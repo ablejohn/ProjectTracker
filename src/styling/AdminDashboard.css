@@ -37,7 +37,9 @@
 .dashboard-button {
     background-color: #4caf50;
     border: none;
-    width: 80%;
+    width: 60%;
+    align-items: center;
+    
 }
 
 .dashboard-button:hover {

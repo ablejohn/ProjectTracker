@@ -1,15 +1,75 @@
+/* Ensure the root element takes full height */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Footer styles */
 .footer {
-    background-color: #4caf50; /* Green background */
-    color: white; /* Text color */
-    text-align: center; /* Centered text */
-    padding: 10px 0; /* Vertical padding */
-    position: relative; /* Change to relative to allow normal flow */
-    width: 100%; /* Full width */
-    bottom: 0; /* Align to the bottom */
+  background-color: #4caf50; /* Green background */
+  color: white; /* Text color */
+  text-align: center; /* Centered text */
+  padding: 10px 0; /* Vertical padding */
+  width: 100%; /* Full width */
+  margin-top: 20px; /* Space between footer and content */
+}
+
+/* Footer content wrapper for better spacing */
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Copyright text styling */
+.copyright {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Optional: Style for sticky footer */
+.footer.sticky {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+/* Optional: Footer links styling */
+.footer-links {
+  margin-top: 8px;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-size: 0.9rem;
+  transition: opacity 0.2s ease;
+}
+
+.footer-links a:hover {
+  opacity: 0.8;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .footer {
+    padding: 8px 0;
   }
   
-  .footer p {
-    margin: 0;
-    font-size: 17px;
+  .copyright {
+    font-size: 0.8rem;
   }
   
+  .footer-links {
+    margin-top: 6px;
+  }
+  
+  .footer-links a {
+    margin: 0 8px;
+    font-size: 0.8rem;
+  }
+}

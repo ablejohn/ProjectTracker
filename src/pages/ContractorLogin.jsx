@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Input, Button, Typography } from "antd";
 import "../styling/AllLogin.css"; // Optional: Add custom CSS
+import BackButton from "../components/backbutton";
 
 const { Title } = Typography;
 
@@ -45,6 +46,7 @@ const ClientDashboard = () => {
           </Button>
         </Form.Item>
       </Form>
+      <BackButton />
     </div>
   );
 };
