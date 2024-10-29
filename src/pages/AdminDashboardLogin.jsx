@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input, Button, Typography } from "antd";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import "../styling/AdminDashboard.css"; // Optional: Add custom CSS
+import "../styling/Profile.css"; // Optional: Add custom CSS
 import BackButton from "../components/backbutton";
 
 const { Title } = Typography;
@@ -51,7 +51,7 @@ const AdminDashboardLogin = () => {
           </Button>
         </Form.Item>
       </Form>
-      
+
       <BackButton />
     </div>
   );

@@ -5,6 +5,8 @@ import ClientDashboard from "./pages/ClientLogin";
 import ContractorDashboard from "./pages/ContractorLogin";
 import AdminDashboardLogin from "./pages/AdminDashboardLogin"; // Ensure the correct import
 import AdminDashboard from "./pages/AdminDashboard"; // Add this line for Admin Dashboard
+import ContractorProfile from "./pages/ContractorProfile";
+import ClientProfile from "./pages/ClientProfile";
 import Login from "./pages/HomePage";
 import "./App.css";
 
@@ -23,9 +25,9 @@ function App() {
             path="/admin-dashboard-login"
             element={<AdminDashboardLogin />}
           />{" "}
-          {/* Admin login route */}
           <Route path="/admin-dashboard" element={<AdminDashboard />} />{" "}
-          {/* Admin Dashboard route */}
+          <Route path="/contractor-profile" element={<ContractorProfile />} />{" "}
+          <Route path="/client-profile" element={<ClientProfile />} />{" "}
         </Routes>
       </div>
     </Router>

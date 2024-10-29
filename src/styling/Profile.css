@@ -1,0 +1,87 @@
+
+
+/* General Form Container Styling */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(to bottom right, #f0f2f5, #dfe6e9);
+    padding: 20px;
+  }
+  
+  /* Title Styling */
+  .form-title {
+    font-size: 2rem;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+  }
+  
+  /* Form Styling */
+  .registration-form {
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Input Fields Styling */
+  .registration-form .ant-input {
+    height: 45px;
+    border-radius: 8px;
+    border: 1px solid #dcdfe6;
+    transition: border-color 0.3s;
+  }
+  
+  .registration-form .ant-input:focus,
+  .registration-form .ant-input:hover {
+    border-color: #1890ff;
+    box-shadow: 0 0 8px rgba(24, 144, 255, 0.2);
+  }
+  
+  /* Form Labels Styling */
+  .registration-form .ant-form-item-label > label {
+    font-weight: 500;
+    color: #333;
+  }
+  
+  /* Submit Button Styling */
+  .submit-button {
+    background-color: #1890ff;
+    color: #fff;
+    height: 45px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    width: 100%;
+  }
+  
+  .submit-button:hover {
+    background-color: #40a9ff;
+  }
+  
+  /* Back Button Styling */
+  .back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .registration-form {
+      padding: 30px 20px;
+    }
+  
+    .form-title {
+      font-size: 1.75rem;
+    }
+    
+  }
+  

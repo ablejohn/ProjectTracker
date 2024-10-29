@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Typography, Row, Col } from "antd";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import Lottie from "lottie-react";
 import clientAnimation from "../assets/client.json";
 import contractorAnimation from "../assets/contractor.json";
@@ -10,14 +11,16 @@ import BackButton from "../components/backbutton";
 const { Title } = Typography;
 
 const AdminDashboard = () => {
+  const navigate = useNavigate(); // Initialize the navigate function
+
   const handleCreateClient = () => {
     alert("Redirecting to Create Client Profile...");
-    // Implement navigation logic here
+    navigate("/client-profile");
   };
 
   const handleCreateContractor = () => {
     alert("Redirecting to Create Contractor Profile...");
-    // Implement navigation logic here
+    navigate("/contractor-profile");
   };
 
   return (
