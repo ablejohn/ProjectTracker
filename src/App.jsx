@@ -7,6 +7,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import ContractorProfile from "./pages/ContractorProfile";
 import ClientProfile from "./pages/ClientProfile";
 import Login from "./pages/HomePage";
+import ContractorPortal from "./components/ContractorPortal/ContractorPortal";
 import NavBar from "./components/Navbar";
 import Footer from "./components/footer";
 import "./App.css";
@@ -30,6 +31,7 @@ function App() {
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/contractor-profile" element={<ContractorProfile />} />
           <Route path="/client-profile" element={<ClientProfile />} />
+          <Route path="/contractor-portal" element={<ContractorPortal />} />
         </Routes>
         <Footer />
       </div>

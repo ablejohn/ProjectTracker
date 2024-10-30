@@ -2,13 +2,22 @@ import React from "react";
 import { Form, Input, Button, Typography } from "antd";
 import "../styling/AllLogin.css";
 import BackButton from "../components/backbutton";
+import { useNavigate } from "react-router-dom";
 
 const { Title } = Typography;
 
 const ContractorDashboard = () => {
+  const navigate = useNavigate();
+
+  const handleContractorPortal = () => {
+    alert("Login successful...");
+    navigate("/contractor-portal");
+  };
+
   const onFinish = (values) => {
     console.log("Form values:", values);
-    alert("Form submitted successfully!");
+
+    handleContractorPortal(); // Navigate to contractor profile on form submission
   };
 
   return (
@@ -25,7 +34,7 @@ const ContractorDashboard = () => {
         style={{ maxWidth: 400, margin: "20px auto" }}
       >
         <Form.Item
-          label="ContractorName"
+          label="Contractor Name"
           name="contractorName"
           rules={[{ required: true, message: "Please enter your name!" }]}
         >
@@ -37,7 +46,7 @@ const ContractorDashboard = () => {
           name="contractorId"
           rules={[{ required: true, message: "Please enter your ID!" }]}
         >
-          <Input placeholder="Enter your ID " />
+          <Input placeholder="Enter your ID" />
         </Form.Item>
 
         <Form.Item>
@@ -46,6 +55,7 @@ const ContractorDashboard = () => {
           </Button>
         </Form.Item>
       </Form>
+
       <BackButton />
     </div>
   );
