@@ -5,7 +5,7 @@ import BackButton from "../components/backbutton";
 
 const { Title } = Typography;
 
-const ClientDashboard = () => {
+const ContractorDashboard = () => {
   const onFinish = (values) => {
     console.log("Form values:", values);
     alert("Form submitted successfully!");
@@ -51,4 +51,4 @@ const ClientDashboard = () => {
   );
 };
 
-export default ClientDashboard;
+export default ContractorDashboard;

@@ -1,0 +1,149 @@
+.desktop-nav {
+  display: none; /* Hidden by default */
+}
+
+@media (min-width: 769px) {
+  .desktop-nav {
+    display: block; /* Show on desktop */
+  }
+  
+  .hamburger-icon {
+    display: none; /* Hide hamburger on desktop */
+  }
+}
+
+/* Main Navigation Bar */
+.mini-nav-bar {
+  background-color: #4caf50 !important;
+  border-bottom: 2px solid #1e6821;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+}
+
+/* Menu Item Styling */
+.mini-nav-bar .ant-menu-item,
+.ant-drawer .ant-menu-item {
+  color: #ffffff !important;
+  font-weight: 500;
+  margin: 0 10px;
+  transition: background-color 0.3s, color 0.3s;
+  border-radius: 8px;
+  cursor: pointer !important;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* Active Menu Item Styling */
+.mini-nav-bar .ant-menu-item-selected,
+.ant-drawer .ant-menu-item-selected {
+  background-color: #1e6821 !important;
+  color: #fff !important;
+}
+
+/* Hover Effect for Menu Items */
+.mini-nav-bar .ant-menu-item:hover,
+.ant-drawer .ant-menu-item:hover,
+.mini-nav-bar .ant-menu-item:active {
+  background-color: #1e6821 !important;
+  color: #ffffff !important;
+}
+
+/* Remove Antd default menu styles */
+.mini-nav-bar .ant-menu-item::after,
+.ant-drawer .ant-menu-item::after {
+  display: none !important;
+}
+
+/* Drawer Specific Styles */
+.ant-drawer .ant-drawer-header {
+  background-color: #4caf50;
+  border-bottom: 1px solid #1e6821;
+}
+
+.ant-drawer .ant-drawer-title {
+  color: white;
+}
+
+.ant-drawer .ant-drawer-close {
+  color: white;
+}
+
+.ant-drawer .ant-menu {
+  background-color: #4caf50;
+  border: none;
+}
+
+/* Override Ant Design Menu Background */
+.mini-nav-bar.ant-menu {
+  background-color: #4caf50 !important;
+  border: none !important;
+}
+
+/* Icon Styling */
+.ant-menu-item .anticon {
+  color: white !important;
+}
+
+/* Mobile Specific Styles */
+@media (max-width: 768px) {
+  .mini-nav-bar {
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: auto;
+  }
+
+  .mini-nav-bar .ant-menu-item {
+    margin: 0 !important;
+    padding: 12px 16px !important;
+    height: auto !important;
+    line-height: 1.5 !important;
+    flex: 1;
+    text-align: center;
+  }
+
+  .mini-nav-bar .ant-menu-item .anticon {
+    margin-right: 0;
+    font-size: 20px;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .mini-nav-bar.ant-menu-horizontal {
+    flex-wrap: wrap;
+  }
+
+  /* Enhanced touch target size */
+  .ant-menu-item {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Extra small screens */
+@media screen and (max-width: 480px) {
+  .mini-nav-bar .ant-menu-item {
+    padding: 8px 12px !important;
+    font-size: 12px;
+  }
+
+  .mini-nav-bar .ant-menu-item .anticon {
+    font-size: 16px;
+  }
+}
+
+/* Fix for sticky navigation */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}

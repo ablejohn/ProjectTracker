@@ -5,7 +5,6 @@ import Lottie from "lottie-react";
 import clientAnimation from "../assets/client.json";
 import contractorAnimation from "../assets/contractor.json";
 import "../styling/AdminDashboard.css";
-import Footer from "../components/footer";
 import BackButton from "../components/backbutton";
 
 const { Title } = Typography;
@@ -63,8 +62,6 @@ const AdminDashboard = () => {
         </Col>
         <BackButton />
       </Row>
-
-      <Footer className="footer" />
     </div>
   );
 };

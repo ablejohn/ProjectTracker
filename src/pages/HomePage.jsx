@@ -3,7 +3,6 @@ import { Button, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import welcomeAnimation from "../assets/welcome.json"; // Ensure the correct path
-import Footer from "../components/footer"; // Import Footer component
 import "../styling/HomePage.css"; // Custom CSS for styling
 
 const { Title, Paragraph } = Typography;
@@ -66,7 +65,6 @@ const Login = () => {
           </Button>
         </div>
       </div>
-      <Footer /> {/* Include the Footer component here */}
     </div>
   );
 };

@@ -1,16 +1,25 @@
-
 .back-button {
-    background-color: #4caf50; /* Change to your preferred color */
-    color: white !important;
-    border: none !important;
-    border-radius: 5px !important;
-    padding: 10px 15px !important;
-    cursor: pointer;
-    font-size: 16px !important;
-    transition: background-color 0.3s ease;
-  }
+  background-color: #4caf50;
+  color: white !important;
+  border: none !important;
+  border-radius: 5px !important;
+  padding: 10px 15px !important;
+  cursor: pointer;
+  font-size: 16px !important;
+  transition: background-color 0.3s ease;
+  margin-top: 60px;
+}
+
+.back-button:hover {
+  background-color: #63b366;
+}
+
+
+@media screen and (max-width: 768px) {
   
-  .back-button:hover {
-    background-color: #63b366; 
-  }
+}
+
+/* Extra small screens */
+@media screen and (max-width: 480px) {
   
+}

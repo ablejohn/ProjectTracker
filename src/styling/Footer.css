@@ -12,7 +12,8 @@
   text-align: center; /* Centered text */
   padding: 10px 0; /* Vertical padding */
   width: 100%; /* Full width */
-  margin-top: 20px; /* Space between footer and content */
+  margin-top: 10px; /* Space between footer and content */
+  margin-bottom:40px;
 }
 
 /* Footer content wrapper for better spacing */

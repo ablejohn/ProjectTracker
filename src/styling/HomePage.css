@@ -7,28 +7,33 @@
 }
 
 .animation-container {
-  flex: 0 0 80px; /* Set a fixed height, adjust as needed */
+  flex: 0 0 80px; 
   display: flex;
   justify-content: center;
   align-items: center;
   padding-top: 0; 
   margin-bottom: 0; 
+  margin-top: -50px;
   
 }
 
 .content-container {
   text-align: center;
   padding: 0; 
-  margin-top: -87px; /* No margin-top */
-  margin-bottom: 5px; 
+  margin-top: -30px; 
+  margin-bottom:99px;
+  
 }
 
 .content-container h1 {
   color: black;
   font-weight: bolder;
+  margin-top: 20px;
+  
 }
 
 .button-group {
-  margin-top: 20px;
+  margin-top: 4px;
+  
 }
 
