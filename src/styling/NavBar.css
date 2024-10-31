@@ -1,198 +1,65 @@
-/* Navigation Styles */
-.desktop-nav {
-  display: none; /* Hidden by default */
-}
+/* NavBar.css */
 
-@media (min-width: 769px) {
-  .desktop-nav {
-    display: block; /* Show on desktop */
-  }
-
-  .hamburger-icon {
-    display: none; /* Hide hamburger on desktop */
-  }
+/* Navigation Container */
+.nav-container {
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 /* Main Navigation Bar */
 .mini-nav-bar {
   background-color: #4caf50 !important;
-  border-bottom: 2px solid #1e6821;
-  padding: 10px;
+  border: none !important;
   display: flex;
   justify-content: center;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-  width: 100%;
 }
 
-/* Dark Mode for Navigation Bar */
-body.dark-mode .mini-nav-bar {
-  background-color: #1a1a1a !important; /* Dark background */
-  border-bottom: 2px solid #333; /* Darker border */
-}
-
-/* Menu Item Styling */
+/* Menu Item Styling - Ensure White Labels */
 .mini-nav-bar .ant-menu-item,
-.ant-drawer .ant-menu-item {
-  color: #ffffff !important;
+.nav-item {
+  color: white !important;
   font-weight: 500;
-  margin: 0 10px;
   transition: background-color 0.3s, color 0.3s;
-  border-radius: 8px;
-  cursor: pointer !important;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
-  user-select: none;
 }
 
-/* Dark Mode for Menu Items */
-body.dark-mode .mini-nav-bar .ant-menu-item,
-body.dark-mode .ant-drawer .ant-menu-item {
-  color: #e0e0e0 !important; /* Lighter text for dark mode */
-}
-
-/* Active Menu Item Styling */
+/* Active and Hover States */
 .mini-nav-bar .ant-menu-item-selected,
-.ant-drawer .ant-menu-item-selected {
+.nav-item:hover {
   background-color: #1e6821 !important;
-  color: #fff !important;
-}
-
-/* Dark Mode Active Menu Item */
-body.dark-mode .mini-nav-bar .ant-menu-item-selected,
-body.dark-mode .ant-drawer .ant-menu-item-selected {
-  background-color: #333 !important; /* Darker background for active item */
-}
-
-/* Hover Effect for Menu Items */
-.mini-nav-bar .ant-menu-item:hover,
-.ant-drawer .ant-menu-item:hover,
-.mini-nav-bar .ant-menu-item:active {
-  background-color: #1e6821 !important;
-  color: #ffffff !important;
-}
-
-/* Dark Mode Hover Effect */
-body.dark-mode .mini-nav-bar .ant-menu-item:hover,
-body.dark-mode .ant-drawer .ant-menu-item:hover {
-  background-color: #555 !important; /* Lighter hover color */
-  color: #ffffff !important; /* Keep text white on hover */
-}
-
-/* Remove Antd default menu styles */
-.mini-nav-bar .ant-menu-item::after,
-.ant-drawer .ant-menu-item::after {
-  display: none !important;
-}
-
-/* Drawer Specific Styles */
-.ant-drawer .ant-drawer-header {
-  background-color: #4caf50;
-  border-bottom: 1px solid #1e6821;
-}
-
-/* Dark Mode Drawer Header */
-body.dark-mode .ant-drawer .ant-drawer-header {
-  background-color: #1a1a1a; /* Darker header */
-  border-bottom: 1px solid #333; /* Darker border */
-}
-
-.ant-drawer .ant-drawer-title {
-  color: white;
-}
-
-.ant-drawer .ant-drawer-close {
-  color: white;
-}
-
-.ant-drawer .ant-menu {
-  background-color: #4caf50;
-  border: none;
-}
-
-/* Dark Mode Drawer Menu */
-body.dark-mode .ant-drawer .ant-menu {
-  background-color: #1a1a1a; /* Darker background */
-  border: none;
-}
-
-/* Override Ant Design Menu Background */
-.mini-nav-bar.ant-menu {
-  background-color: #4caf50 !important;
-  border: none !important;
-}
-
-/* Dark Mode Override Ant Design Menu Background */
-body.dark-mode .mini-nav-bar.ant-menu {
-  background-color: #1a1a1a !important; /* Darker background */
-  border: none !important;
-}
-
-/* Icon Styling */
-.ant-menu-item .anticon {
   color: white !important;
 }
 
-/* Dark Mode Icon Styling */
-body.dark-mode .ant-menu-item .anticon {
-  color: #e0e0e0 !important; /* Lighter icon color */
+/* Dark Mode Styles */
+body.dark-mode .mini-nav-bar {
+  background-color: #4caf50 !important;
 }
 
-/* Mobile Specific Styles */
+body.dark-mode .mini-nav-bar .ant-menu-item,
+body.dark-mode .nav-item {
+  color: white !important;
+}
+
+body.dark-mode .mini-nav-bar .ant-menu-item-selected,
+body.dark-mode .nav-item:hover {
+  background-color: #333 !important;
+  color: white !important;
+}
+
+/* Hover Effects */
+.mini-nav-bar .ant-menu-item:hover,
+body.dark-mode .mini-nav-bar .ant-menu-item:hover {
+  color: #f0f0f0 !important;
+}
+
+/* Mobile Responsive */
 @media (max-width: 768px) {
   .mini-nav-bar {
-    padding: 0;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: auto;
+    flex-direction: column;
   }
 
-  .mini-nav-bar .ant-menu-item {
-    margin: 0 !important;
-    padding: 12px 16px !important;
-    height: auto !important;
-    line-height: 1.5 !important;
-    flex: 1;
+  .nav-item {
     text-align: center;
   }
-
-  .mini-nav-bar .ant-menu-item .anticon {
-    margin-right: 0;
-    font-size: 20px;
-    display: block;
-    margin-bottom: 4px;
-  }
-
-  .mini-nav-bar.ant-menu-horizontal {
-    flex-wrap: wrap;
-  }
-
-  /* Enhanced touch target size */
-  .ant-menu-item {
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-/* Extra small screens */
-@media screen and (max-width: 480px) {
-  .mini-nav-bar .ant-menu-item {
-    padding: 8px 12px !important;
-    font-size: 12px;
-  }
-
-  .mini-nav-bar .ant-menu-item .anticon {
-    font-size: 16px;
-  }
-}
-
-/* Fix for sticky navigation */
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  width: 100%;
 }

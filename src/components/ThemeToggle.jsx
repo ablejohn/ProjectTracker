@@ -1,4 +1,3 @@
-// src/components/ThemeToggle.js
 import React, { useState, useEffect } from "react";
 import { Switch } from "antd";
 import { BulbOutlined, BulbFilled } from "@ant-design/icons";
@@ -20,20 +19,14 @@ const ThemeToggle = () => {
   const toggleTheme = () => setDarkMode(!darkMode);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "flex-end",
-      }}
-    >
+    <div className="theme-toggle-wrapper">
       <Switch
         checked={darkMode}
         onChange={toggleTheme}
         checkedChildren={<BulbFilled />}
         unCheckedChildren={<BulbOutlined />}
       />
-      <span className="theme-toggle-text" style={{ marginLeft: 8 }}>
+      <span className="theme-toggle-text">
         {darkMode ? "Dark Mode" : "Light Mode"}
       </span>
     </div>

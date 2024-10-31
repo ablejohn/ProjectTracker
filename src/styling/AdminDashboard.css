@@ -1,65 +1,106 @@
-/* src/styling/AdminDashboard.css */
-
+/* Dark Mode Styling for Admin Dashboard */
 .admin-dashboard {
-    min-height: 100vh; /* Keeps the minimum height of the dashboard */
-    padding: 2px; /* Original padding */
+    min-height: 100vh;
+    padding: 2px;
     background: linear-gradient(to bottom right, #f0f2f5, #dfe6e9);
     text-align: center;
-    display: flex; /* Added for layout adjustments */
-    flex-direction: column; /* Allows for vertical layout */
-    justify-content: space-between; /* Ensures footer stays at the bottom */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: background-color 0.3s ease;
 }
 
+/* Dark Mode Background */
+.dark-mode .admin-dashboard {
+    background: linear-gradient(to bottom right, #1a1a1a, #2c2c2c);
+    color: white;
+}
+
+/* Dashboard Header */
 .dashboard-header {
     color: #4caf50;
     margin-bottom: 22px;
     font-size: 36px;
     font-weight: bold;
+    transition: color 0.3s ease;
 }
 
-/* Responsive Design for Smaller Screens */
-@media (max-width: 768px) {
-    .dashboard-header {
-      margin-top: 50px; /* Moves the header downward on smaller screens */
-      font-size: 2rem; /* Slightly smaller font size for mobile devices */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .dashboard-header {
-      margin-top: 60px; /* Further adjustment for very small screens */
-      font-size: 1.75rem; /* Adjust font size for smaller devices */
-    }
-  }
+.dark-mode .dashboard-header {
+    color: #4caf50; /* Keep the same color or adjust as needed */
+}
 
+/* Section Containers */
 .section-row {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    transition: background-color 0.3s ease;
 }
+
+
 
 .section-container {
     text-align: center;
     margin-top: 20px;
+    transition: background-color 0.3s ease;
 }
 
+
+
+/* Lottie Animation */
 .lottie-animation {
     max-width: 300px;
     margin: 0 auto 20px;
 }
 
+/* Dashboard Buttons */
 .dashboard-button {
     background-color: #4caf50;
     border: none;
     width: 60%;
     align-items: center;
-    
+    transition: background-color 0.3s ease;
 }
 
 .dashboard-button:hover {
     background-color: #45a049;
 }
-.footer{
-    margin-bottom: 10px;
+
+.dark-mode .dashboard-button {
+    background-color: #4caf50;
+    color: white;
+}
+
+.dark-mode .dashboard-button:hover {
+    background-color: #45a049;
+    opacity: 0.9;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-header {
+        margin-top: 50px;
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-header {
+        margin-top: 60px;
+        font-size: 1.75rem;
+    }
+}
+
+/* Additional Dark Mode Enhancements */
+.dark-mode * {
+    scrollbar-color: #4caf50 #2c2c2c; /* Custom scrollbar for dark mode */
+}
+
+/* Optional: Subtle Box Shadows for Depth in Dark Mode */
+.dark-mode .section-container,
+.dark-mode .dashboard-button {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 }

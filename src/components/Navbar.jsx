@@ -6,6 +6,7 @@ import {
   UserOutlined,
   DashboardOutlined,
 } from "@ant-design/icons";
+import "../styling/NavBar.css";
 
 const NavBar = () => {
   const location = useLocation();

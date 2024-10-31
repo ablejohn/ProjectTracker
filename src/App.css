@@ -1,24 +1,40 @@
 /* src/App.css */
 .App {
-    text-align: center;
-    background-color: #f0f2f5; 
-  }
-  
-  button {
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
+  text-align: center;
+  background-color: #f0f2f5; 
+  min-height: 100vh; /* Ensures full page height */
+  color: #333; /* Default text color */
+}
 
-  .dark-mode .App {
-    background-color: #1a1a1a;
-  }
-  
+/* Button Styling */
+button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Dark Mode Styles */
+.dark-mode .App {
+  background-color: #1a1a1a;
+  color: #ffffff; /* White text for dark mode */
+}
+
+/* Optional: Improve readability in dark mode */
+.dark-mode a {
+  color: #4CAF50; /* Ensures links are visible in dark mode */
+}
+
+.dark-mode input,
+.dark-mode textarea {
+  background-color: white;
+  color: black;
+  border-color: #444;
+}

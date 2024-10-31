@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Input, Button, Upload, Typography } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import BackButton from "../backbutton";
-import "../../styling/AllLogin.css";
+import "../../styling/Allportal.css";
 
 const { Title } = Typography;
 
