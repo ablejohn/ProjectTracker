@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Input, Button, Upload, Typography } from "antd";
 import { InboxOutlined } from "@ant-design/icons";
 import BackButton from "../backbutton";
+import "../../styling/AllLogin.css";
 
 const { Title } = Typography;
 
@@ -28,13 +29,13 @@ const ContractorPortal = () => {
     <div className="form-container">
       <BackButton />
       <Title level={2} className="form-title">
-        Client Portal
+        Contractor Dashboard
       </Title>
       <Form
-        name="client_portal"
+        name="contractor_portal"
         layout="vertical"
         onFinish={onFinish}
-        className="client-portal-form"
+        className="contrac-portal-form"
       >
         <Form.Item
           label="Message"

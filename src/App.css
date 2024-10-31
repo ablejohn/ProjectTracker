@@ -1,7 +1,7 @@
 /* src/App.css */
 .App {
     text-align: center;
-    background-color: #f9f9e6 !important;
+    background-color: #f0f2f5; 
   }
   
   button {
@@ -16,5 +16,9 @@
   
   button:hover {
     background-color: #45a049;
+  }
+
+  .dark-mode .App {
+    background-color: #1a1a1a;
   }
   

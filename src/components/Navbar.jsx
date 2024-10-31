@@ -14,12 +14,12 @@ const NavBar = () => {
   const menuItems = [
     { key: "/", icon: <HomeOutlined />, label: "Home" },
     {
-      key: "/client-dashboard",
+      key: "/client-dashboard-login",
       icon: <UserOutlined />,
       label: "Client Login",
     },
     {
-      key: "/contractor-dashboard",
+      key: "/contractor-dashboard-login",
       icon: <UserOutlined />,
       label: "Contractor Login",
     },

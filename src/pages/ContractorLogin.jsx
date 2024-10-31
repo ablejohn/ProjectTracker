@@ -11,7 +11,7 @@ const ContractorDashboard = () => {
 
   const handleContractorPortal = () => {
     alert("Login successful...");
-    navigate("/contractor-portal");
+    navigate("/contractor-dashboard");
   };
 
   const onFinish = (values) => {
@@ -25,7 +25,9 @@ const ContractorDashboard = () => {
       <Title level={2} className="dashboard-title">
         Contractor Login
       </Title>
-      <p>Here you'll manage your clients and upload project updates.</p>
+      <p className="dashboard-paragraph">
+        Here you'll manage your clients and upload project updates.
+      </p>
 
       <Form
         name="clientForm"

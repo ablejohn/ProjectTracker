@@ -20,7 +20,9 @@ const AdminDashboardLogin = () => {
       <Title level={2} className="dashboard-title">
         Admin Dashboard Login
       </Title>
-      <p>Please enter your credentials to access the Admin Dashboard.</p>
+      <p className="dashboard-paragraph">
+        Please enter your credentials to access the Admin Dashboard.
+      </p>
       <Form
         name="adminLoginForm"
         onFinish={onFinish}

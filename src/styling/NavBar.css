@@ -1,3 +1,4 @@
+/* Navigation Styles */
 .desktop-nav {
   display: none; /* Hidden by default */
 }
@@ -6,7 +7,7 @@
   .desktop-nav {
     display: block; /* Show on desktop */
   }
-  
+
   .hamburger-icon {
     display: none; /* Hide hamburger on desktop */
   }
@@ -24,6 +25,12 @@
   width: 100%;
 }
 
+/* Dark Mode for Navigation Bar */
+body.dark-mode .mini-nav-bar {
+  background-color: #1a1a1a !important; /* Dark background */
+  border-bottom: 2px solid #333; /* Darker border */
+}
+
 /* Menu Item Styling */
 .mini-nav-bar .ant-menu-item,
 .ant-drawer .ant-menu-item {
@@ -38,11 +45,23 @@
   user-select: none;
 }
 
+/* Dark Mode for Menu Items */
+body.dark-mode .mini-nav-bar .ant-menu-item,
+body.dark-mode .ant-drawer .ant-menu-item {
+  color: #e0e0e0 !important; /* Lighter text for dark mode */
+}
+
 /* Active Menu Item Styling */
 .mini-nav-bar .ant-menu-item-selected,
 .ant-drawer .ant-menu-item-selected {
   background-color: #1e6821 !important;
   color: #fff !important;
+}
+
+/* Dark Mode Active Menu Item */
+body.dark-mode .mini-nav-bar .ant-menu-item-selected,
+body.dark-mode .ant-drawer .ant-menu-item-selected {
+  background-color: #333 !important; /* Darker background for active item */
 }
 
 /* Hover Effect for Menu Items */
@@ -51,6 +70,13 @@
 .mini-nav-bar .ant-menu-item:active {
   background-color: #1e6821 !important;
   color: #ffffff !important;
+}
+
+/* Dark Mode Hover Effect */
+body.dark-mode .mini-nav-bar .ant-menu-item:hover,
+body.dark-mode .ant-drawer .ant-menu-item:hover {
+  background-color: #555 !important; /* Lighter hover color */
+  color: #ffffff !important; /* Keep text white on hover */
 }
 
 /* Remove Antd default menu styles */
@@ -63,6 +89,12 @@
 .ant-drawer .ant-drawer-header {
   background-color: #4caf50;
   border-bottom: 1px solid #1e6821;
+}
+
+/* Dark Mode Drawer Header */
+body.dark-mode .ant-drawer .ant-drawer-header {
+  background-color: #1a1a1a; /* Darker header */
+  border-bottom: 1px solid #333; /* Darker border */
 }
 
 .ant-drawer .ant-drawer-title {
@@ -78,15 +110,32 @@
   border: none;
 }
 
+/* Dark Mode Drawer Menu */
+body.dark-mode .ant-drawer .ant-menu {
+  background-color: #1a1a1a; /* Darker background */
+  border: none;
+}
+
 /* Override Ant Design Menu Background */
 .mini-nav-bar.ant-menu {
   background-color: #4caf50 !important;
   border: none !important;
 }
 
+/* Dark Mode Override Ant Design Menu Background */
+body.dark-mode .mini-nav-bar.ant-menu {
+  background-color: #1a1a1a !important; /* Darker background */
+  border: none !important;
+}
+
 /* Icon Styling */
 .ant-menu-item .anticon {
   color: white !important;
+}
+
+/* Dark Mode Icon Styling */
+body.dark-mode .ant-menu-item .anticon {
+  color: #e0e0e0 !important; /* Lighter icon color */
 }
 
 /* Mobile Specific Styles */

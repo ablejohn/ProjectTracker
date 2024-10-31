@@ -11,11 +11,11 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleClientLogin = () => {
-    navigate("/client-dashboard");
+    navigate("/client-dashboard-login");
   };
 
   const handleContractorLogin = () => {
-    navigate("/contractor-dashboard");
+    navigate("/contractor-dashboard-login");
   };
 
   const handleAddClient = () => {
@@ -29,7 +29,7 @@ const Login = () => {
       </div>
       <div className="content-container">
         <Title level={1}>Welcome to Project Tracker</Title>
-        <Paragraph>
+        <Paragraph className="welcome-paragraph">
           Streamline your projects and track progress with ease. Choose your
           role to get started.
         </Paragraph>
@@ -53,7 +53,6 @@ const Login = () => {
             Contractor Login
           </Button>
 
-          {/* Add Client Button */}
           <Button
             type="primary"
             size="large"

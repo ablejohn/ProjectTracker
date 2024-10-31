@@ -1,0 +1,21 @@
+/* src/styles/Theme.css */
+body {
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for background and text color */
+  }
+  
+  .dark-mode {
+    background-color: #333; /* Dark background */
+    color: white; /* Light text */
+  }
+  
+  .light-mode {
+    background-color: #f0f2f5; /* Light background */
+    color: black; /* Dark text */
+  }
+  
+  /* Styling for the toggle text */
+  .theme-toggle-text {
+    color: inherit; /* Inherit color from the parent element */
+    transition: color 0.3s ease; /* Smooth transition for text color */
+  }
+  

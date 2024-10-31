@@ -1,0 +1,11 @@
+/* theme.css */
+:root {
+    --background-color: #f9f9e6; /* Light mode background */
+    --text-color: #000000; /* Light mode text */
+  }
+  
+  .dark-mode {
+    --background-color: #1a1a1a; /* Dark mode background */
+    --text-color: #ffffff; /* Dark mode text */
+  }
+  

@@ -2,12 +2,15 @@ import React from "react";
 import { Form, Input, Button, Typography } from "antd";
 import "../styling/AllLogin.css"; // Optional: Add custom CSS
 import BackButton from "../components/backbutton";
+import { useNavigate } from "react-router-dom";
 const { Title } = Typography;
 
 const ClientDashboard = () => {
+  const navigate = useNavigate();
   const onFinish = (values) => {
     console.log("Form values:", values);
-    alert("Form submitted successfully!");
+    alert("Login successful...");
+    navigate("/client-dashboard");
   };
 
   return (
@@ -17,7 +20,7 @@ const ClientDashboard = () => {
           Client Login
         </Title>
 
-        <p>
+        <p className="dashboard-paragraph">
           Welcome to your project dashboard. Here you'll see project updates.
         </p>
 
