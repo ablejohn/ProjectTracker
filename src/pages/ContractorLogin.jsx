@@ -51,6 +51,14 @@ const ContractorDashboard = () => {
           <Input placeholder="Enter your ID" />
         </Form.Item>
 
+        <Form.Item
+          label="Project ID"
+          name="projectId"
+          rules={[{ required: true, message: "Please enter the Project ID!" }]}
+        >
+          <Input placeholder="Enter the Project ID" />
+        </Form.Item>
+
         <Form.Item>
           <Button type="primary" htmlType="submit" block>
             Submit
