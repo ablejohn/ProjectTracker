@@ -39,10 +39,10 @@ const ClientDashboard = () => {
           </Form.Item>
 
           <Form.Item
-            label="Project ID"
-            name="projectId"
+            label="Project Title"
+            name="projectTitle"
             rules={[
-              { required: true, message: "Please enter the Project ID!" },
+              { required: true, message: "Please enter the Project Title!" },
             ]}
           >
             <Input placeholder="Enter Project ID" />
