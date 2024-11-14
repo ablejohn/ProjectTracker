@@ -1,26 +1,37 @@
 import React from "react";
 import { Form, Input, Button, Typography } from "antd";
 import "../styling/Profile.css";
-import BackButton from "../components/backbutton";
+import BackButton from "../Components/backbutton";
+import axios from "axios";
 
 const { Title } = Typography;
 
 const ClientProfile = () => {
   const generateProjectId = (clientName, phoneNumber) => {
-    // Get first 2 letters of client name (converted to uppercase)
     const namePrefix = clientName.substring(0, 2).toUpperCase();
-
-    // Get last 3 digits of phone number
     const numberSuffix = phoneNumber.slice(-3);
-
-    // Combine them to create the project ID
     return `${namePrefix}${numberSuffix}`;
   };
 
-  const onFinish = (values) => {
-    const projectId = generateProjectId(values.clientName, values.phone);
-    console.log("Form values:", values);
-    alert(`Client registered successfully!\nProject ID: ${projectId}`);
+  const onFinish = async (values) => {
+    try {
+      // Generate projectId using clientName and phone
+      const projectId = generateProjectId(values.clientName, values.phone);
+
+      // Add projectId to the form values
+      const data = { ...values, projectId };
+
+      const response = await axios.post(
+        "http://localhost:5000/api/clients/register",
+        data
+      );
+      alert(
+        `Client registered successfully!\nProject ID: ${response.data.projectId}`
+      );
+    } catch (error) {
+      alert("Error registering client");
+      console.error(error);
+    }
   };
 
   return (

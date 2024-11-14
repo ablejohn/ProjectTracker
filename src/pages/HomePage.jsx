@@ -56,9 +56,9 @@ const Login = () => {
           <Button
             type="primary"
             size="large"
-            onClick={() => navigate("/admin-dashboard-login")} // Update the onClick to navigate to Admin Dashboard
+            onClick={() => navigate("/admin-dashboard-login")} 
             className="login-button"
-            style={{ marginTop: "16px" }} // Optional: Add spacing
+            style={{ marginTop: "16px" }} 
           >
             Admin Dashboard
           </Button>

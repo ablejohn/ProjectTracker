@@ -1,14 +1,23 @@
 import React from "react";
 import { Form, Input, Button, Typography } from "antd";
+import axios from "axios"; // Add this import statement
 import "../styling/Profile.css"; // Optional: Add custom CSS
-import BackButton from "../components/backbutton";
+import BackButton from "../Components/backbutton";
 
 const { Title } = Typography;
 
 const ContractorProfile = () => {
-  const onFinish = (values) => {
-    console.log("Form values:", values);
-    alert("Contractor registered successfully!");
+  const onFinish = async (values) => {
+    try {
+      await axios.post(
+        "http://localhost:5000/api/contractors/register",
+        values
+      );
+      alert("Contractor registered successfully!");
+    } catch (error) {
+      alert("Error registering contractor");
+      console.error(error);
+    }
   };
 
   return (

@@ -5,7 +5,7 @@ import Lottie from "lottie-react";
 import clientAnimation from "../assets/client.json";
 import contractorAnimation from "../assets/contractor.json";
 import "../styling/AdminDashboard.css";
-import BackButton from "../components/backbutton";
+import BackButton from "../Components/backbutton";
 
 const { Title } = Typography;
 

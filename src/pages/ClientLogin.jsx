@@ -1,7 +1,7 @@
 import React from "react";
 import { Form, Input, Button, Typography } from "antd";
 import "../styling/AllLogin.css"; // Optional: Add custom CSS
-import BackButton from "../components/backbutton";
+import BackButton from "../Components/backbutton";
 import { useNavigate } from "react-router-dom";
 const { Title } = Typography;
 

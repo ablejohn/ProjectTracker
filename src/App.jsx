@@ -7,11 +7,11 @@ import AdminDashboard from "./pages/AdminDashboard";
 import ContractorProfile from "./pages/ContractorProfile";
 import ClientProfile from "./pages/ClientProfile";
 import Login from "./pages/HomePage";
-import NavBar from "./components/Navbar";
-import Footer from "./components/Footer";
-import ContractorPortal from "./components/ContractorPortal/ContractorPortal";
-import ClientPortal from "./components/ClientPortal/ClientPortal";
-import ThemeToggle from "./components/ThemeToggle";
+import NavBar from "./Components/Navbar";
+import Footer from "./Components/Footer";
+import ContractorPortal from "./Components/ContractorPortal/ContractorPortal";
+import ClientPortal from "./Components/ClientPortal/ClientPortal";
+import ThemeToggle from "./Components/ThemeToggle";
 
 import "./App.css";
 import "./styling/theme.css";
