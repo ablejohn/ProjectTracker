@@ -37,7 +37,10 @@ function App() {
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/contractor-profile" element={<ContractorProfile />} />
           <Route path="/client-profile" element={<ClientProfile />} />
-          <Route path="/contractor-dashboard" element={<ContractorPortal />} />
+          <Route
+            path="/contractor-dashboard/:clientId"
+            element={<ContractorPortal />}
+          />
           <Route path="/contractor-client" element={<ContractorClient />} />
           <Route path="/client-dashboard" element={<ClientPortal />} />
         </Routes>

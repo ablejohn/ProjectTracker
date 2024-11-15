@@ -1,16 +1,35 @@
-import React from "react";
-import { Form, Input, Button, Typography } from "antd";
+import React, { useState } from "react";
+import { Form, Input, Button, Typography, message } from "antd";
+import { useNavigate } from "react-router-dom";
 import "../styling/AllLogin.css"; // Optional: Add custom CSS
 import BackButton from "../Components/backbutton";
-import { useNavigate } from "react-router-dom";
+import axios from "axios"; // Axios for making API calls
+
 const { Title } = Typography;
 
 const ClientDashboard = () => {
+  const [loading, setLoading] = useState(false); // For handling loading state
   const navigate = useNavigate();
-  const onFinish = (values) => {
-    console.log("Form values:", values);
-    alert("Login successful...");
-    navigate("/client-dashboard");
+
+  const onFinish = async (values) => {
+    setLoading(true);
+    try {
+      // Send login request to the backend with the entered client name and project title
+      const response = await axios.post(
+        "http://localhost:5000/api/clients/login",
+        values
+      );
+
+      if (response.status === 200) {
+        message.success("Login successful!");
+        navigate("/client-dashboard");
+      }
+    } catch (error) {
+      message.error("Invalid credentials. Please try again.");
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -45,11 +64,11 @@ const ClientDashboard = () => {
               { required: true, message: "Please enter the Project Title!" },
             ]}
           >
-            <Input placeholder="Enter Project ID" />
+            <Input placeholder="Enter Project Title" />
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit" block>
+            <Button type="primary" htmlType="submit" block loading={loading}>
               Submit
             </Button>
           </Form.Item>
