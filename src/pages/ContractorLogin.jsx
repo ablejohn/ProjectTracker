@@ -1,23 +1,35 @@
 import React from "react";
-import { Form, Input, Button, Typography } from "antd";
+import { Form, Input, Button, Typography, message } from "antd";
 import "../styling/AllLogin.css";
 import BackButton from "../Components/backbutton";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const { Title } = Typography;
 
 const ContractorDashboard = () => {
   const navigate = useNavigate();
 
-  const handleContractorPortal = () => {
-    alert("Login successful...");
-    navigate("/contractor-dashboard");
-  };
+  const onFinish = async (values) => {
+    try {
+      // Send login request
+      const response = await axios.post(
+        "http://localhost:5000/api/contractors/login",
+        values
+      );
 
-  const onFinish = (values) => {
-    console.log("Form values:", values);
-
-    handleContractorPortal(); // Navigate to contractor profile on form submission
+      // Login successful
+      message.success("Login successful!");
+      navigate("/contractor-dashboard");
+    } catch (error) {
+      // Handle errors
+      if (error.response && error.response.status === 401) {
+        message.error("Invalid credentials. Please try again.");
+      } else {
+        message.error("An error occurred. Please try again later.");
+      }
+      console.error(error);
+    }
   };
 
   return (
@@ -30,7 +42,7 @@ const ContractorDashboard = () => {
       </p>
 
       <Form
-        name="clientForm"
+        name="contractorForm"
         onFinish={onFinish}
         layout="vertical"
         style={{ maxWidth: 400, margin: "20px auto" }}
@@ -49,14 +61,6 @@ const ContractorDashboard = () => {
           rules={[{ required: true, message: "Please enter your ID!" }]}
         >
           <Input placeholder="Enter your ID" />
-        </Form.Item>
-
-        <Form.Item
-          label="Project ID"
-          name="projectId"
-          rules={[{ required: true, message: "Please enter the Project ID!" }]}
-        >
-          <Input placeholder="Enter the Project ID" />
         </Form.Item>
 
         <Form.Item>

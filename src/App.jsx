@@ -10,6 +10,7 @@ import Login from "./pages/HomePage";
 import NavBar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import ContractorPortal from "./Components/ContractorPortal/ContractorPortal";
+import ContractorClient from "./pages/ContractorClient";
 import ClientPortal from "./Components/ClientPortal/ClientPortal";
 import ThemeToggle from "./Components/ThemeToggle";
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="/contractor-profile" element={<ContractorProfile />} />
           <Route path="/client-profile" element={<ClientProfile />} />
           <Route path="/contractor-dashboard" element={<ContractorPortal />} />
+          <Route path="/contractor-client" element={<ContractorClient />} />
           <Route path="/client-dashboard" element={<ClientPortal />} />
         </Routes>
         <Footer />
