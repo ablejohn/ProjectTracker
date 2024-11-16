@@ -32,33 +32,54 @@ router.post("/register", async (req, res) => {
 });
 
 // Login route
+// In clientRoutes.js, update the login route:
 router.post("/login", async (req, res) => {
   try {
-    const { clientName, projectTitle } = req.body;
+    const { email, projectId } = req.body;
+    console.log("Login attempt with:", { email, projectId });
 
     const client = await Client.findOne({
       where: {
-        clientName: clientName,
-        projectTitle: projectTitle,
+        email: email,
+        projectId: projectId,
       },
     });
 
+    console.log("Database query result:", client);
+
     if (!client) {
+      console.log("No client found with these credentials");
       return res.status(401).json({ message: "Invalid credentials" });
     }
 
+    console.log("Client found, sending success response");
     res.status(200).json({
       message: "Login successful",
       client: {
         id: client.id,
         clientName: client.clientName,
-        projectTitle: client.projectTitle,
+        email: client.email,
         projectId: client.projectId,
+        projectTitle: client.projectTitle,
       },
     });
   } catch (error) {
     console.error("Login error:", error);
     res.status(500).json({ message: "Server error during login" });
+  }
+});
+
+//route for contractor to get list of registered clients
+router.get("/", async (req, res) => {
+  try {
+    const clients = await Client.findAll({
+      attributes: ["id", "clientName", "projectTitle", "projectId", "email"], // Specify which fields to return
+      order: [["createdAt", "DESC"]], // Optional: Sort by newest first
+    });
+    res.json(clients);
+  } catch (error) {
+    console.error("Error fetching clients:", error);
+    res.status(500).json({ message: "Error fetching clients" });
   }
 });
 

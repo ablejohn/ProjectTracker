@@ -19,6 +19,7 @@ app.use(express.json());
 // Routes
 app.use("/api/contractors", contractorRoutes);
 app.use("/api/clients", clientRoutes);
+// server.js
 
 // Test database connection and start the server
 (async () => {

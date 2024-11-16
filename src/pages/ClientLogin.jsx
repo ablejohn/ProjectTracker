@@ -1,37 +1,37 @@
+// ClientLogin.jsx
 import React, { useState } from "react";
 import { Form, Input, Button, Typography, message } from "antd";
 import { useNavigate } from "react-router-dom";
-import "../styling/AllLogin.css"; // Optional: Add custom CSS
+import "../styling/AllLogin.css";
 import BackButton from "../Components/backbutton";
-import axios from "axios"; // Axios for making API calls
+import axios from "axios";
 
 const { Title } = Typography;
 
 const ClientDashboard = () => {
-  const [loading, setLoading] = useState(false); // For handling loading state
+  // Changed name to match file
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  // In ClientLogin.jsx, modify the onFinish function:
-  // ClientLogin.jsx
   const onFinish = async (values) => {
     setLoading(true);
     try {
-      console.log("Sending login request with data:", values); // Add this line
+      console.log("Sending login request with data:", values);
 
       const response = await axios.post(
         "http://localhost:5000/api/clients/login",
         values
       );
 
-      console.log("Server response:", response.data); // Add this line
+      console.log("Server response:", response.data);
 
       if (response.status === 200) {
         message.success("Login successful!");
         navigate("/client-dashboard");
       }
     } catch (error) {
-      console.log("Login attempt failed with values:", values); // Add this line
-      console.log("Error details:", error.response?.data); // Add this line
+      console.log("Login attempt failed with values:", values);
+      console.log("Error details:", error.response?.data);
       message.error(
         error.response?.data?.message ||
           "Invalid credentials. Please try again."
@@ -50,7 +50,7 @@ const ClientDashboard = () => {
         </Title>
 
         <p className="dashboard-paragraph">
-          Welcome to your project dashboard. Here you'll see project updates.
+          Please enter your email and Project ID to access your dashboard.
         </p>
 
         <Form
@@ -60,26 +60,29 @@ const ClientDashboard = () => {
           style={{ maxWidth: 400, margin: "20px auto" }}
         >
           <Form.Item
-            label="Client Name"
-            name="clientName"
-            rules={[{ required: true, message: "Please enter your name!" }]}
+            label="Email"
+            name="email"
+            rules={[
+              { required: true, message: "Please enter your email!" },
+              { type: "email", message: "Please enter a valid email!" },
+            ]}
           >
-            <Input placeholder="Enter Client Name" />
+            <Input placeholder="Enter your email" />
           </Form.Item>
 
           <Form.Item
-            label="Project Title"
-            name="projectTitle"
+            label="Project ID"
+            name="projectId"
             rules={[
-              { required: true, message: "Please enter the Project Title!" },
+              { required: true, message: "Please enter your Project ID!" },
             ]}
           >
-            <Input placeholder="Enter Project Title" />
+            <Input placeholder="Enter your Project ID" />
           </Form.Item>
 
           <Form.Item>
             <Button type="primary" htmlType="submit" block loading={loading}>
-              Submit
+              Login
             </Button>
           </Form.Item>
         </Form>
