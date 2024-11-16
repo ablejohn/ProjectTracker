@@ -11,21 +11,31 @@ const ClientDashboard = () => {
   const [loading, setLoading] = useState(false); // For handling loading state
   const navigate = useNavigate();
 
+  // In ClientLogin.jsx, modify the onFinish function:
+  // ClientLogin.jsx
   const onFinish = async (values) => {
     setLoading(true);
     try {
-      // Send login request to the backend with the entered client name and project title
+      console.log("Sending login request with data:", values); // Add this line
+
       const response = await axios.post(
         "http://localhost:5000/api/clients/login",
         values
       );
+
+      console.log("Server response:", response.data); // Add this line
 
       if (response.status === 200) {
         message.success("Login successful!");
         navigate("/client-dashboard");
       }
     } catch (error) {
-      message.error("Invalid credentials. Please try again.");
+      console.log("Login attempt failed with values:", values); // Add this line
+      console.log("Error details:", error.response?.data); // Add this line
+      message.error(
+        error.response?.data?.message ||
+          "Invalid credentials. Please try again."
+      );
       console.error(error);
     } finally {
       setLoading(false);
