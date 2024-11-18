@@ -19,7 +19,7 @@
 /* Dashboard Header */
 .dashboard-header {
     color: #4caf50;
-    margin-bottom: 22px;
+    margin-bottom: 12px;
     font-size: 36px;
     font-weight: bold;
     transition: color 0.3s ease;
@@ -34,7 +34,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 10px;
     transition: background-color 0.3s ease;
 }
 
@@ -51,7 +51,7 @@
 /* Lottie Animation */
 .lottie-animation {
     max-width: 300px;
-    margin: 0 auto 20px;
+    margin: 0 auto 40px;
 }
 
 /* Dashboard Buttons */
@@ -61,6 +61,7 @@
     width: 60%;
     align-items: center;
     transition: background-color 0.3s ease;
+    margin: 0 auto 95px;
 }
 
 .dashboard-button:hover {

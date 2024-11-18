@@ -6,12 +6,12 @@ const router = express.Router();
 
 // Contractor Login Route
 router.post("/login", async (req, res) => {
-  const { contractorName, contractorId } = req.body;
+  const { email, contractorId } = req.body;
 
   try {
     // Check if contractor exists
     const contractor = await Contractor.findOne({
-      where: { contractorName, contractorId },
+      where: { email, contractorId },
     });
 
     if (!contractor) {

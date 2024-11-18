@@ -1,8 +1,7 @@
-// server.js
 import express from "express";
 import sequelize from "./database.js";
 import cors from "cors";
-import contractorRoutes from "./routes/contractorsRoutes.js"; // Updated import name
+import contractorRoutes from "./routes/contractorsRoutes.js";
 import clientRoutes from "./routes/clientsRoutes.js";
 import Client from "./models/Client.js";
 import Contractor from "./models/Contractor.js";

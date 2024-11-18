@@ -1,4 +1,3 @@
-// app.js
 const express = require("express");
 const clientRoutes = require("./routes/clientRoutes");
 const contractorRoutes = require("./routes/contractorRoutes");

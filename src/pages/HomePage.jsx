@@ -56,11 +56,11 @@ const Login = () => {
           <Button
             type="primary"
             size="large"
-            onClick={() => navigate("/admin-dashboard-login")} 
+            onClick={() => navigate("/admin-dashboard")}
             className="login-button"
-            style={{ marginTop: "16px" }} 
+            style={{ marginTop: "16px" }}
           >
-            Admin Dashboard
+            Create A Profile
           </Button>
         </div>
       </div>

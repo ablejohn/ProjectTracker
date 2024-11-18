@@ -1,8 +1,8 @@
 import React from "react";
 import { Form, Input, Button, Typography, message } from "antd";
+import { Link, useNavigate } from "react-router-dom";
 import "../styling/AllLogin.css";
 import BackButton from "../Components/backbutton";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const { Title } = Typography;
@@ -38,7 +38,7 @@ const ContractorDashboard = () => {
         Contractor Login
       </Title>
       <p className="dashboard-paragraph">
-        Here you'll manage your clients and upload project updates.
+        Please enter your email and Contractor ID to access your dashboard.
       </p>
 
       <Form
@@ -48,11 +48,11 @@ const ContractorDashboard = () => {
         style={{ maxWidth: 400, margin: "20px auto" }}
       >
         <Form.Item
-          label="Contractor Name"
-          name="contractorName"
-          rules={[{ required: true, message: "Please enter your name!" }]}
+          label="Email"
+          name="email"
+          rules={[{ required: true, message: "Please enter your email!" }]}
         >
-          <Input placeholder="Enter Contractor Name" />
+          <Input placeholder="Enter your email" />
         </Form.Item>
 
         <Form.Item
@@ -60,7 +60,7 @@ const ContractorDashboard = () => {
           name="contractorId"
           rules={[{ required: true, message: "Please enter your ID!" }]}
         >
-          <Input placeholder="Enter your ID" />
+          <Input placeholder="Enter your Contractor ID" />
         </Form.Item>
 
         <Form.Item>
@@ -69,6 +69,12 @@ const ContractorDashboard = () => {
           </Button>
         </Form.Item>
       </Form>
+
+      <div className="signup-link">
+        <p>
+          No account? <Link to="/admin-dashboard">Sign up</Link>
+        </p>
+      </div>
 
       <BackButton />
     </div>

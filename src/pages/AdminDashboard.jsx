@@ -25,7 +25,7 @@ const AdminDashboard = () => {
   return (
     <div className="admin-dashboard">
       <Title level={1} className="dashboard-header">
-        Welcome to the Admin Dashboard
+        Welcome Please Choose Your Role
       </Title>
       <Row gutter={32} className="section-row">
         <Col xs={24} md={12} className="section-container">

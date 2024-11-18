@@ -25,9 +25,9 @@ const NavBar = () => {
       label: "Contractor Login",
     },
     {
-      key: "/admin-dashboard-login",
+      key: "/admin-dashboard",
       icon: <DashboardOutlined />,
-      label: "Admin Login",
+      label: "Create A Profile",
     },
   ];
 

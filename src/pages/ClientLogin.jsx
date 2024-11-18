@@ -1,7 +1,6 @@
-// ClientLogin.jsx
 import React, { useState } from "react";
 import { Form, Input, Button, Typography, message } from "antd";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styling/AllLogin.css";
 import BackButton from "../Components/backbutton";
 import axios from "axios";
@@ -9,7 +8,6 @@ import axios from "axios";
 const { Title } = Typography;
 
 const ClientDashboard = () => {
-  // Changed name to match file
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -86,6 +84,12 @@ const ClientDashboard = () => {
             </Button>
           </Form.Item>
         </Form>
+
+        <div className="signup-link">
+          <p>
+            No account? <Link to="/admin-dashboard">Sign up</Link>
+          </p>
+        </div>
       </div>
       <BackButton />
     </div>
