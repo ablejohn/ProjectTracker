@@ -5,6 +5,12 @@
   flex-direction: column;
 }
 
+/* Main content styles for proper layout */
+.main-content {
+  flex-grow: 1; /* Push the footer to the bottom */
+  padding-bottom: 20px; /* Optional padding to ensure space above the footer */
+}
+
 /* Footer styles */
 .footer {
   background-color: #4caf50 !important; /* Green background */
@@ -12,8 +18,7 @@
   text-align: center; /* Centered text */
   padding: 10px 0; /* Vertical padding */
   width: 100%; /* Full width */
-  margin-top: 10px; /* Space between footer and content */
-  margin-bottom:40px;
+  margin-top: 0; /* No margin to avoid gaps */
 }
 
 /* Footer content wrapper for better spacing */
@@ -28,14 +33,6 @@
   margin: 0;
   font-size: 0.9rem;
   line-height: 1.5;
-}
-
-/* Optional: Style for sticky footer */
-.footer.sticky {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
 }
 
 /* Optional: Footer links styling */
