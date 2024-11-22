@@ -72,7 +72,7 @@ const ContractorDashboard = () => {
 
       <div className="signup-link">
         <p>
-          No account? <Link to="/admin-dashboard">Sign up</Link>
+          No account? <Link to="/contractor-profile">Sign up</Link>
         </p>
       </div>
 

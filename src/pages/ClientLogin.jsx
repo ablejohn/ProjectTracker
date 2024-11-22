@@ -87,7 +87,7 @@ const ClientDashboard = () => {
 
         <div className="signup-link">
           <p>
-            No account? <Link to="/admin-dashboard">Sign up</Link>
+            No account? <Link to="/client-profile">Sign up</Link>
           </p>
         </div>
       </div>
