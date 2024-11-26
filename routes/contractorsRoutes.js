@@ -54,4 +54,18 @@ router.post("/register", async (req, res) => {
   }
 });
 
+// Route for client to get a list of registered contractors
+router.get("/", async (req, res) => {
+  try {
+    const contractors = await Contractor.findAll({
+      attributes: ["id", "contractorName", "contractorId", "email", "phone"], // Specify which fields to return
+      order: [["createdAt", "DESC"]], // Optional: Sort by newest first
+    });
+    res.json(contractors); // Use the correct variable here
+  } catch (error) {
+    console.error("Error fetching contractors:", error);
+    res.status(500).json({ message: "Error fetching contractors" });
+  }
+});
+
 export default router;

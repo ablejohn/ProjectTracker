@@ -1,131 +1,124 @@
-import React, { useState } from "react";
-import { Form, Input, Button, Upload, Typography, Card, Space } from "antd";
-import { InboxOutlined } from "@ant-design/icons";
-import BackButton from "../backbutton";
+import React, { useState, useEffect, useRef } from "react";
+import { Form, Input, Button, Upload, Typography, Card } from "antd";
+import { InboxOutlined, SendOutlined } from "@ant-design/icons";
 import "../../styling/Allportal.css";
 
 const { Title, Text } = Typography;
 
 const ClientPortal = () => {
-  const [file, setFile] = useState(null);
-  const [messages, setMessages] = useState([]);
-  const [form] = Form.useForm(); // Add form instance to reset fields
+  const [messages, setMessages] = useState([]); // All chat messages
+  const [newMessage, setNewMessage] = useState(""); // Input for new message
+  const [file, setFile] = useState(null); // File to send
+  const messagesEndRef = useRef(null); // To scroll to the bottom of the chat
 
-  const onFinish = (values) => {
-    const newMessage = {
-      content: values.message,
-      file: file,
-      sender: "Client",
+  // Mock fetch messages from the backend
+  useEffect(() => {
+    const fetchMessages = async () => {
+      // Simulate fetching messages
+      setTimeout(() => {
+        setMessages([
+          { content: "Hello, Contractor!", sender: "Client" },
+          { content: "Hi, Client! How can I help?", sender: "Contractor" },
+        ]);
+      }, 500);
     };
-    setMessages([...messages, newMessage]);
-    setFile(null);
-    form.resetFields(); // Clear form fields
-    console.log("Form values:", values);
-    console.log("Uploaded file:", file);
-    alert("Message sent successfully!");
-  };
+    fetchMessages();
+  }, []);
 
+  // Scroll to the bottom of the chat when new messages arrive
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
+  // Handle file selection
   const onFileChange = (info) => {
-    if (info.file.status === "uploading") {
-      return;
-    }
+    if (info.file.status === "uploading") return;
     if (info.file.status === "done") {
       setFile(info.file.originFileObj);
     }
   };
 
-  // Function to receive messages from the contractor
-  const receiveContractorMessage = (message) => {
-    const newMessage = {
-      content: message.content,
-      file: message.file,
-      sender: "Contractor",
+  // Handle sending a new message
+  const handleSendMessage = () => {
+    if (!newMessage.trim() && !file) {
+      alert("Please enter a message or attach a file!");
+      return;
+    }
+
+    const newMsg = {
+      content: newMessage,
+      file: file ? { name: file.name } : null,
+      sender: "Client",
     };
-    setMessages([...messages, newMessage]);
+
+    // Simulate sending to the backend and receiving contractor's response
+    setMessages((prev) => [...prev, newMsg]);
+
+    // Simulated contractor reply
+    setTimeout(() => {
+      setMessages((prev) => [
+        ...prev,
+        {
+          content: "Got it! Thanks for the update.",
+          sender: "Contractor",
+        },
+      ]);
+    }, 1000);
+
+    // Clear input and file
+    setNewMessage("");
+    setFile(null);
   };
 
   return (
-    <div className="form-container">
-      <BackButton />
-      <Title level={2} className="form-title">
-        Client Portal
-      </Title>
+    <div className="chat-container">
+      <div className="chat-header">
+        <h2>Client Portal Chat</h2>
+      </div>
 
-      <Form
-        form={form} // Bind form instance
-        name="client_portal"
-        layout="vertical"
-        onFinish={onFinish}
-        className="client-portal-form"
-      >
-        <Form.Item
-          label="Message"
-          name="message"
-          rules={[{ required: true, message: "Please enter your message" }]}
-        >
-          <Input.TextArea rows={4} placeholder="Enter your message" />
-        </Form.Item>
-
-        <Form.Item name="file" label="Upload File" valuePropName="file">
-          <Upload.Dragger
-            name="file"
-            multiple={false}
-            beforeUpload={() => false}
-            onChange={onFileChange}
+      <div className="chat-messages">
+        {messages.map((msg, index) => (
+          <div
+            key={index}
+            className={`chat-message ${
+              msg.sender === "Client" ? "sent" : "received"
+            }`}
           >
-            <p className="ant-upload-drag-icon">
-              <InboxOutlined />
-            </p>
-            <p className="ant-upload-text">
-              Click or drag file to this area to upload
-            </p>
-            <p className="ant-upload-hint">Support for a single file upload.</p>
-          </Upload.Dragger>
-        </Form.Item>
+            <p className="chat-text">{msg.content}</p>
+            {msg.file && (
+              <a href="#" className="chat-file">
+                📎 {msg.file.name}
+              </a>
+            )}
+            <small>{msg.sender}</small>
+          </div>
+        ))}
+        <div ref={messagesEndRef} />
+      </div>
 
-        <Form.Item>
-          <Button type="primary" htmlType="submit" className="submit-button">
-            Send
-          </Button>
-        </Form.Item>
-      </Form>
-
-      <div className="message-container">
-        <Title level={3}>Messages</Title>
-        {messages.length > 0 ? (
-          <Space direction="vertical" style={{ width: "100%" }}>
-            {messages.map((message, index) => (
-              <Card
-                key={index}
-                className={`message-card ${
-                  message.sender === "Client"
-                    ? "client-message"
-                    : "contractor-message"
-                }`}
-              >
-                <Text>{message.content}</Text>
-                {message.file && (
-                  <div>
-                    <Text>Attached file: </Text>
-                    <a href="#">{message.file.name}</a>
-                  </div>
-                )}
-                <Text className="message-sender">{message.sender}</Text>
-              </Card>
-            ))}
-          </Space>
-        ) : (
-          <Text>No messages yet.</Text>
-        )}
+      <div className="chat-input">
+        <Input.TextArea
+          rows={1}
+          value={newMessage}
+          onChange={(e) => setNewMessage(e.target.value)}
+          placeholder="Type a message..."
+        />
+        <Upload
+          name="file"
+          beforeUpload={() => false}
+          onChange={onFileChange}
+          showUploadList={false}
+        >
+          <Button icon={<InboxOutlined />} />
+        </Upload>
+        <Button
+          type="primary"
+          icon={<SendOutlined />}
+          onClick={handleSendMessage}
+        />
       </div>
     </div>
   );
-};
-
-// Function to send a contractor message
-export const sendContractorMessage = (message) => {
-  // You may pass this function as a prop to ClientPortal in the parent component
-  // Or, adjust the design if ClientPortal is supposed to handle this logic.
 };
 
 export default ClientPortal;

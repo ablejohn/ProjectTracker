@@ -11,6 +11,7 @@ import NavBar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import ContractorPortal from "./Components/ContractorPortal/ContractorPortal";
 import ContractorClient from "./pages/ContractorClient";
+import ClientContractor from "./pages/ClientContractor";
 import ClientPortal from "./Components/ClientPortal/ClientPortal";
 import ThemeToggle from "./Components/ThemeToggle";
 
@@ -38,11 +39,15 @@ function App() {
           <Route path="/contractor-profile" element={<ContractorProfile />} />
           <Route path="/client-profile" element={<ClientProfile />} />
           <Route
-            path="/contractor-dashboard/:clientId"
+            path="/contractor-dashboard/:contractorId"
             element={<ContractorPortal />}
           />
           <Route path="/contractor-client" element={<ContractorClient />} />
-          <Route path="/client-dashboard" element={<ClientPortal />} />
+          <Route path="/client-contractor" element={<ClientContractor />} />
+          <Route
+            path="/client-dashboard/:clientId"
+            element={<ClientPortal />}
+          />
         </Routes>
         <Footer />
       </div>

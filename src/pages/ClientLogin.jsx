@@ -25,7 +25,7 @@ const ClientDashboard = () => {
 
       if (response.status === 200) {
         message.success("Login successful!");
-        navigate("/client-dashboard");
+        navigate("/client-contractor");
       }
     } catch (error) {
       console.log("Login attempt failed with values:", values);

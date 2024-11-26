@@ -13,50 +13,54 @@ import { useNavigate } from "react-router-dom";
 
 const { Title } = Typography;
 
-const ContractorClientList = () => {
-  const [clients, setClients] = useState([]);
+const ContractorList = () => {
+  const [contractors, setContractors] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [clientsPerPage] = useState(7); // Fixed number of clients per page
+  const [contractorsPerPage] = useState(7);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchClients = async () => {
+    const fetchContractors = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("http://localhost:5000/api/clients");
-        setClients(response.data);
+        const response = await axios.get(
+          "http://localhost:5000/api/contractors"
+        );
+        console.log("Contractors fetched:", response.data);
+        setContractors(response.data);
       } catch (error) {
-        console.error("Error fetching clients:", error);
-        message.error("Failed to load clients list");
+        console.error("Error fetching contractors:", error);
+        message.error("Failed to load contractors list");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchClients();
+    fetchContractors();
   }, []);
 
-  const handleClientSelect = (clientId) => {
-    navigate(`/client-dashboard/${clientId}`);
+  const handleContractorSelect = (contractorId) => {
+    navigate(`/contractor-dashboard/${contractorId}`);
   };
 
-  const filteredClients = clients.filter((client) => {
+  const filteredContractors = contractors.filter((contractor) => {
     const lowerCaseSearch = searchTerm.toLowerCase();
     return (
-      client.clientName.toLowerCase().includes(lowerCaseSearch) ||
-      client.projectTitle.toLowerCase().includes(lowerCaseSearch) ||
-      client.email.toLowerCase().includes(lowerCaseSearch)
+      contractor.contractorName.toLowerCase().includes(lowerCaseSearch) ||
+      contractor.contractorId.toLowerCase().includes(lowerCaseSearch) ||
+      contractor.email.toLowerCase().includes(lowerCaseSearch) ||
+      contractor.phone.toLowerCase().includes(lowerCaseSearch)
     );
   });
 
   // Pagination Logic
-  const indexOfLastClient = currentPage * clientsPerPage;
-  const indexOfFirstClient = indexOfLastClient - clientsPerPage;
-  const currentClients = filteredClients.slice(
-    indexOfFirstClient,
-    indexOfLastClient
+  const indexOfLastContractor = currentPage * contractorsPerPage;
+  const indexOfFirstContractor = indexOfLastContractor - contractorsPerPage;
+  const currentContractors = filteredContractors.slice(
+    indexOfFirstContractor,
+    indexOfLastContractor
   );
 
   const handlePageChange = (page) => {
@@ -67,7 +71,7 @@ const ContractorClientList = () => {
     return (
       <div style={{ textAlign: "center", marginTop: "50px" }}>
         <Spin size="large" />
-        <p>Loading clients...</p>
+        <p>Loading contractors...</p>
       </div>
     );
   }
@@ -75,13 +79,13 @@ const ContractorClientList = () => {
   return (
     <div style={{ padding: "20px" }}>
       <Title level={2} style={{ textAlign: "center", marginBottom: "20px" }}>
-        Registered Clients
+        Registered Contractors
       </Title>
 
       {/* Search Input */}
       <div style={{ textAlign: "center", marginBottom: "20px" }}>
         <Input
-          placeholder="Search clients by name, project, or email"
+          placeholder="Search contractors by name, ID, email, or phone"
           size="large"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -89,34 +93,35 @@ const ContractorClientList = () => {
         />
       </div>
 
-      {/* Clients List */}
-      {currentClients.length === 0 ? (
+      {/* Contractors List */}
+      {currentContractors.length === 0 ? (
         <p style={{ textAlign: "center", marginTop: "20px" }}>
-          No clients match your search.
+          No contractors match your search.
         </p>
       ) : (
         <>
           <List
             bordered
-            dataSource={currentClients}
+            dataSource={currentContractors}
             style={{ maxWidth: "800px", margin: "0 auto" }}
-            renderItem={(client) => (
+            renderItem={(contractor) => (
               <List.Item
                 actions={[
                   <Button
                     type="primary"
-                    onClick={() => handleClientSelect(client.id)}
+                    onClick={() => handleContractorSelect(contractor.id)}
                   >
-                    View Messages
+                    View Details
                   </Button>,
                 ]}
               >
                 <List.Item.Meta
-                  title={`Client: ${client.clientName}`}
+                  title={`Contractor: ${contractor.contractorName}`}
                   description={
                     <>
-                      <p>Project: {client.projectTitle}</p>
-                      <p>Email: {client.email}</p>
+                      <p>Contractor ID: {contractor.contractorId}</p>
+                      <p>Email: {contractor.email}</p>
+                      <p>Phone: {contractor.phone}</p>
                     </>
                   }
                 />
@@ -126,8 +131,8 @@ const ContractorClientList = () => {
           {/* Pagination Component */}
           <Pagination
             current={currentPage}
-            pageSize={clientsPerPage}
-            total={filteredClients.length}
+            pageSize={contractorsPerPage}
+            total={filteredContractors.length}
             onChange={handlePageChange}
             style={{ textAlign: "center", marginTop: "20px" }}
           />
@@ -137,4 +142,4 @@ const ContractorClientList = () => {
   );
 };
 
-export default ContractorClientList;
+export default ContractorList;
