@@ -10,7 +10,10 @@
     background: linear-gradient(to bottom right, #f0f2f5, #dfe6e9);
     padding: 20px;
   }
-  
+.dark-mode .form-container{
+    background: linear-gradient(to bottom right, #1a1a1a, #2c2c2c);
+    color: white;
+}
   /* Title Styling */
   .form-title {
     font-size: 2rem;
@@ -18,6 +21,9 @@
     text-align: center;
     margin-bottom: 30px;
     font-weight: 600;
+  }
+  .dark-mode .form-title{
+    color:#fff;
   }
   
   /* Form Styling */

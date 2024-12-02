@@ -10,6 +10,7 @@ import {
   Pagination,
 } from "antd";
 import { useNavigate } from "react-router-dom";
+import "../styling/ClientList.css";
 
 const { Title } = Typography;
 
@@ -18,7 +19,7 @@ const ContractorClientList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
-  const [clientsPerPage] = useState(7); // Fixed number of clients per page
+  const [clientsPerPage] = useState(7);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,7 +52,6 @@ const ContractorClientList = () => {
     );
   });
 
-  // Pagination Logic
   const indexOfLastClient = currentPage * clientsPerPage;
   const indexOfFirstClient = indexOfLastClient - clientsPerPage;
   const currentClients = filteredClients.slice(
@@ -65,7 +65,7 @@ const ContractorClientList = () => {
 
   if (loading) {
     return (
-      <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <div className="contractor-client-list__loading">
         <Spin size="large" />
         <p>Loading clients...</p>
       </div>
@@ -73,33 +73,31 @@ const ContractorClientList = () => {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
-      <Title level={2} style={{ textAlign: "center", marginBottom: "20px" }}>
+    <div className="contractor-client-list">
+      <Title level={2} className="contractor-client-list__title">
         Registered Clients
       </Title>
 
-      {/* Search Input */}
-      <div style={{ textAlign: "center", marginBottom: "20px" }}>
+      <div className="contractor-client-list__search-container">
         <Input
+          className="contractor-client-list__search-input"
           placeholder="Search clients by name, project, or email"
           size="large"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          style={{ maxWidth: "500px", width: "100%" }}
         />
       </div>
 
-      {/* Clients List */}
       {currentClients.length === 0 ? (
-        <p style={{ textAlign: "center", marginTop: "20px" }}>
+        <p className="contractor-client-list__no-results">
           No clients match your search.
         </p>
       ) : (
         <>
           <List
+            className="contractor-client-list__list"
             bordered
             dataSource={currentClients}
-            style={{ maxWidth: "800px", margin: "0 auto" }}
             renderItem={(client) => (
               <List.Item
                 actions={[
@@ -123,13 +121,12 @@ const ContractorClientList = () => {
               </List.Item>
             )}
           />
-          {/* Pagination Component */}
           <Pagination
+            className="contractor-client-list__pagination"
             current={currentPage}
             pageSize={clientsPerPage}
             total={filteredClients.length}
             onChange={handlePageChange}
-            style={{ textAlign: "center", marginTop: "20px" }}
           />
         </>
       )}

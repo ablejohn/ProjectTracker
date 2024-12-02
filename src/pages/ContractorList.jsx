@@ -10,6 +10,7 @@ import {
   Pagination,
 } from "antd";
 import { useNavigate } from "react-router-dom";
+import "../styling/ContractorList.css";
 
 const { Title } = Typography;
 
@@ -55,7 +56,6 @@ const ContractorList = () => {
     );
   });
 
-  // Pagination Logic
   const indexOfLastContractor = currentPage * contractorsPerPage;
   const indexOfFirstContractor = indexOfLastContractor - contractorsPerPage;
   const currentContractors = filteredContractors.slice(
@@ -69,7 +69,7 @@ const ContractorList = () => {
 
   if (loading) {
     return (
-      <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <div className="contractor-list__loading">
         <Spin size="large" />
         <p>Loading contractors...</p>
       </div>
@@ -77,33 +77,31 @@ const ContractorList = () => {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
-      <Title level={2} style={{ textAlign: "center", marginBottom: "20px" }}>
+    <div className="contractor-list">
+      <Title level={2} className="contractor-list__title">
         Registered Contractors
       </Title>
 
-      {/* Search Input */}
-      <div style={{ textAlign: "center", marginBottom: "20px" }}>
+      <div className="contractor-list__search-container">
         <Input
+          className="contractor-list__search-input"
           placeholder="Search contractors by name, ID, email, or phone"
           size="large"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          style={{ maxWidth: "500px", width: "100%" }}
         />
       </div>
 
-      {/* Contractors List */}
       {currentContractors.length === 0 ? (
-        <p style={{ textAlign: "center", marginTop: "20px" }}>
+        <p className="contractor-list__no-results">
           No contractors match your search.
         </p>
       ) : (
         <>
           <List
+            className="contractor-list__list"
             bordered
             dataSource={currentContractors}
-            style={{ maxWidth: "800px", margin: "0 auto" }}
             renderItem={(contractor) => (
               <List.Item
                 actions={[
@@ -128,13 +126,12 @@ const ContractorList = () => {
               </List.Item>
             )}
           />
-          {/* Pagination Component */}
           <Pagination
+            className="contractor-list__pagination"
             current={currentPage}
             pageSize={contractorsPerPage}
             total={filteredContractors.length}
             onChange={handlePageChange}
-            style={{ textAlign: "center", marginTop: "20px" }}
           />
         </>
       )}

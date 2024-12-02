@@ -10,8 +10,8 @@ import Login from "./pages/HomePage";
 import NavBar from "./Components/Navbar";
 import Footer from "./Components/Footer";
 import ContractorPortal from "./Components/ContractorPortal/ContractorPortal";
-import ContractorClient from "./pages/ContractorClient";
-import ClientContractor from "./pages/ClientContractor";
+import ContractorClient from "./pages/ClientList";
+import ClientContractor from "./pages/ContractorList";
 import ClientPortal from "./Components/ClientPortal/ClientPortal";
 import ThemeToggle from "./Components/ThemeToggle";
 

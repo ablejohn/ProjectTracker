@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Input, Button, Upload, message } from "antd";
-import { InboxOutlined, SendOutlined } from "@ant-design/icons";
+import { Input, Button, message } from "antd";
+import {
+  InboxOutlined,
+  SendOutlined,
+  PaperClipOutlined,
+  CloseCircleOutlined,
+} from "@ant-design/icons";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "../../styling/Allportal.css";
@@ -11,6 +16,7 @@ const ContractorPortal = () => {
   const [newMessage, setNewMessage] = useState(""); // Input for new message
   const [file, setFile] = useState(null); // File to send
   const messagesEndRef = useRef(null); // Scroll to bottom of the chat
+  const fileInputRef = useRef(null); // Reference to file input
 
   // Fetch initial messages
   useEffect(() => {
@@ -35,10 +41,39 @@ const ContractorPortal = () => {
   }, [messages]);
 
   // Handle file selection
-  const onFileChange = (info) => {
-    if (info.file.status === "uploading") return;
-    if (info.file.status === "done") {
-      setFile(info.file.originFileObj);
+  const onFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      // Validate file size (e.g., max 5MB)
+      if (selectedFile.size > 5 * 1024 * 1024) {
+        message.error("File must be smaller than 5MB");
+        return;
+      }
+
+      // Optional: Validate file types
+      const allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/gif",
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ];
+      if (!allowedTypes.includes(selectedFile.type)) {
+        message.error("Unsupported file type");
+        return;
+      }
+
+      setFile(selectedFile);
+    }
+  };
+
+  // Remove selected file
+  const removeFile = () => {
+    setFile(null);
+    // Reset file input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
     }
   };
 
@@ -58,7 +93,12 @@ const ContractorPortal = () => {
       // Send message to API
       const response = await axios.post(
         `http://localhost:5000/api/messages/${clientId}`,
-        formData
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
       );
 
       // Add new message to the chat
@@ -78,6 +118,9 @@ const ContractorPortal = () => {
       // Clear inputs
       setNewMessage("");
       setFile(null);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
       message.success("Message sent successfully!");
     } catch (error) {
       console.error("Error sending message:", error);
@@ -101,7 +144,13 @@ const ContractorPortal = () => {
             <p className="chat-text">{msg.text}</p>
             {msg.file && (
               <a href={msg.file} target="_blank" rel="noopener noreferrer">
-                <div className="chat-file">📎 {msg.fileName}</div>
+                <div className="chat-file">
+                  <PaperClipOutlined />
+                  <span>{msg.fileName}</span>
+                  <small>
+                    {msg.fileSize && `(${(msg.fileSize / 1024).toFixed(2)} KB)`}
+                  </small>
+                </div>
               </a>
             )}
           </div>
@@ -115,18 +164,35 @@ const ContractorPortal = () => {
           onChange={(e) => setNewMessage(e.target.value)}
           placeholder="Type a message..."
         />
-        <Upload
-          name="file"
-          beforeUpload={() => false}
-          onChange={onFileChange}
-          showUploadList={false}
-        >
-          <Button icon={<InboxOutlined />} />
-        </Upload>
+        <div className="file-upload-container">
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={onFileChange}
+            style={{ display: "none" }}
+            accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx"
+          />
+          <Button
+            icon={<InboxOutlined />}
+            onClick={() => fileInputRef.current.click()}
+          >
+            Attach File
+          </Button>
+          {file && (
+            <div className="file-preview">
+              <span>{file.name}</span>
+              <CloseCircleOutlined
+                onClick={removeFile}
+                style={{ color: "red", marginLeft: "8px", cursor: "pointer" }}
+              />
+            </div>
+          )}
+        </div>
         <Button
           type="primary"
           icon={<SendOutlined />}
           onClick={handleSendMessage}
+          disabled={!newMessage.trim() && !file}
         />
       </div>
     </div>

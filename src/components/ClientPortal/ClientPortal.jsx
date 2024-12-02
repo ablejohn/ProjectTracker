@@ -1,73 +1,117 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Form, Input, Button, Upload, Typography, Card } from "antd";
-import { InboxOutlined, SendOutlined } from "@ant-design/icons";
+import { Form, Input, Button, Upload, Typography, Card, message } from "antd";
+import {
+  InboxOutlined,
+  SendOutlined,
+  PaperClipOutlined,
+  CloseCircleOutlined,
+} from "@ant-design/icons";
 import "../../styling/Allportal.css";
 
 const { Title, Text } = Typography;
 
 const ClientPortal = () => {
-  const [messages, setMessages] = useState([]); // All chat messages
-  const [newMessage, setNewMessage] = useState(""); // Input for new message
-  const [file, setFile] = useState(null); // File to send
-  const messagesEndRef = useRef(null); // To scroll to the bottom of the chat
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
+  const [file, setFile] = useState(null);
+  const messagesEndRef = useRef(null);
+  const fileInputRef = useRef(null);
 
-  // Mock fetch messages from the backend
   useEffect(() => {
     const fetchMessages = async () => {
-      // Simulate fetching messages
       setTimeout(() => {
         setMessages([
-          { content: "Hello, Contractor!", sender: "Client" },
-          { content: "Hi, Client! How can I help?", sender: "Contractor" },
+          { content: "Hello, how can I help you today?", sender: "Contractor" },
+          {
+            content: "I need to discuss my project details.",
+            sender: "Client",
+          },
         ]);
       }, 500);
     };
     fetchMessages();
   }, []);
 
-  // Scroll to the bottom of the chat when new messages arrive
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // Handle file selection
-  const onFileChange = (info) => {
-    if (info.file.status === "uploading") return;
-    if (info.file.status === "done") {
-      setFile(info.file.originFileObj);
+  const onFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    if (selectedFile) {
+      // Validate file size (e.g., max 5MB)
+      if (selectedFile.size > 5 * 1024 * 1024) {
+        message.error("File must be smaller than 5MB");
+        return;
+      }
+
+      // Optional: Validate file types
+      const allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/gif",
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ];
+      if (!allowedTypes.includes(selectedFile.type)) {
+        message.error("Unsupported file type");
+        return;
+      }
+
+      setFile(selectedFile);
     }
   };
 
-  // Handle sending a new message
+  const removeFile = () => {
+    setFile(null);
+    // Reset file input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  };
+
   const handleSendMessage = () => {
     if (!newMessage.trim() && !file) {
-      alert("Please enter a message or attach a file!");
       return;
     }
 
     const newMsg = {
       content: newMessage,
-      file: file ? { name: file.name } : null,
+      file: file
+        ? {
+            name: file.name,
+            type: file.type,
+            size: file.size,
+          }
+        : null,
       sender: "Client",
     };
 
-    // Simulate sending to the backend and receiving contractor's response
     setMessages((prev) => [...prev, newMsg]);
 
-    // Simulated contractor reply
+    // Here you would typically send the message and file to your backend
+    // For example:
+    // const formData = new FormData();
+    // formData.append('message', newMessage);
+    // formData.append('file', file);
+    // axios.post('/api/send-message', formData);
+
     setTimeout(() => {
       setMessages((prev) => [
         ...prev,
         {
-          content: "Got it! Thanks for the update.",
+          content: "I'll review your message and get back to you soon.",
           sender: "Contractor",
         },
       ]);
     }, 1000);
 
-    // Clear input and file
     setNewMessage("");
     setFile(null);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
   };
 
   return (
@@ -86,9 +130,13 @@ const ClientPortal = () => {
           >
             <p className="chat-text">{msg.content}</p>
             {msg.file && (
-              <a href="#" className="chat-file">
-                📎 {msg.file.name}
-              </a>
+              <div className="chat-file-info">
+                <PaperClipOutlined />
+                <span>{msg.file.name}</span>
+                <small>
+                  ({(msg.file.size / 1024).toFixed(2)} KB, {msg.file.type})
+                </small>
+              </div>
             )}
             <small>{msg.sender}</small>
           </div>
@@ -103,18 +151,35 @@ const ClientPortal = () => {
           onChange={(e) => setNewMessage(e.target.value)}
           placeholder="Type a message..."
         />
-        <Upload
-          name="file"
-          beforeUpload={() => false}
-          onChange={onFileChange}
-          showUploadList={false}
-        >
-          <Button icon={<InboxOutlined />} />
-        </Upload>
+        <div className="file-upload-container">
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={onFileChange}
+            style={{ display: "none" }}
+            accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx"
+          />
+          <Button
+            icon={<InboxOutlined />}
+            onClick={() => fileInputRef.current.click()}
+          >
+            Attach File
+          </Button>
+          {file && (
+            <div className="file-preview">
+              <span>{file.name}</span>
+              <CloseCircleOutlined
+                onClick={removeFile}
+                style={{ color: "red", marginLeft: "8px", cursor: "pointer" }}
+              />
+            </div>
+          )}
+        </div>
         <Button
           type="primary"
           icon={<SendOutlined />}
           onClick={handleSendMessage}
+          disabled={!newMessage.trim() && !file}
         />
       </div>
     </div>
