@@ -13,6 +13,8 @@ import ContractorPortal from "./Components/ContractorPortal/ContractorPortal";
 import ContractorClient from "./pages/ClientList";
 import ClientContractor from "./pages/ContractorList";
 import ClientPortal from "./Components/ClientPortal/ClientPortal";
+import ClientMessagingInterface from "./components/ClientMessagingInterface";
+import ContractorMessagingInterface from "./components/ContractorMessagingInterface";
 import ThemeToggle from "./Components/ThemeToggle";
 
 import "./App.css";
@@ -47,6 +49,14 @@ function App() {
           <Route
             path="/client-dashboard/:clientId"
             element={<ClientPortal />}
+          />
+          <Route
+            path="/clientmessaginginterface"
+            element={<ClientMessagingInterface />}
+          />
+          <Route
+            path="/contractormessaginginterface"
+            element={<ContractorMessagingInterface />}
           />
         </Routes>
         <Footer />

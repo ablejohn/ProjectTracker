@@ -20,7 +20,7 @@ const ContractorDashboard = () => {
 
       // Login successful
       message.success("Login successful!");
-      navigate("/contractor-client");
+      navigate("/contractormessaginginterface");
     } catch (error) {
       // Handle errors
       if (error.response && error.response.status === 401) {

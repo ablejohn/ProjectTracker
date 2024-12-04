@@ -1,25 +1,71 @@
-const mongoose = require("mongoose");
+// models/Message.js
+import { DataTypes } from "sequelize";
+import sequelize from "../database.js";
+import Client from "./Client.js";
+import Contractor from "./Contractor.js";
 
-const messageSchema = new mongoose.Schema({
-  clientId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Client",
-    required: true,
+const Message = sequelize.define(
+  "Message",
+  {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+    },
+    text: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    senderId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+    },
+    senderType: {
+      type: DataTypes.ENUM("client", "contractor"),
+      allowNull: false,
+    },
+    receiverId: {
+      type: DataTypes.UUID,
+      allowNull: false,
+    },
+    receiverType: {
+      type: DataTypes.ENUM("client", "contractor"),
+      allowNull: false,
+    },
+    fileUrl: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    fileName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    fileSize: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    fileType: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   },
-  message: {
-    type: String,
-    required: true,
-  },
-  filePath: {
-    type: String, // Path to the uploaded file
-    required: false,
-  },
-  sentAt: {
-    type: Date,
-    default: Date.now,
-  },
+  {
+    tableName: "messages",
+    timestamps: true,
+  }
+);
+
+// Associations
+Message.belongsTo(Client, {
+  foreignKey: "senderId",
+  constraints: false,
+  as: "senderClient",
 });
 
-const Message = mongoose.model("Message", messageSchema);
+Message.belongsTo(Contractor, {
+  foreignKey: "senderId",
+  constraints: false,
+  as: "senderContractor",
+});
 
-module.exports = Message;
+export default Message;

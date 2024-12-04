@@ -5,6 +5,7 @@ import contractorRoutes from "./routes/contractorsRoutes.js";
 import clientRoutes from "./routes/clientsRoutes.js";
 import Client from "./models/Client.js";
 import Contractor from "./models/Contractor.js";
+import messagesRoutes from "./routes/messageRoutes.js";
 
 const app = express();
 const PORT = 5000;
@@ -18,7 +19,10 @@ app.use(express.json());
 // Routes
 app.use("/api/contractors", contractorRoutes);
 app.use("/api/clients", clientRoutes);
-// server.js
+app.use("/api/messages", messagesRoutes);
+
+//static file serving for file uploads
+app.use("/uploads", express.static("uploads"));
 
 // Test database connection and start the server
 (async () => {
